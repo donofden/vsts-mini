@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!--
+-->
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -10,6 +12,8 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/main.css" />
+		<noscript><link rel="stylesheet" href="%PUBLIC_URL%/css/noscript.css" /></noscript>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -19,22 +23,71 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>VSTS MINI</title>
   </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="%PUBLIC_URL%/images/apple-icon.png" alt="" /></span><span class="title">VSTS MINI</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Iterations</a></li>
+							<li><a href="#">Plan</a></li>
+							<li><a href="#">Stories</a></li>
+							<li><a href="#">Elements</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>TEAM NAME<br /></h1>
+								<p>VSTS Mini - Delivery Plan Countdown</p>
+							</header>
+							<section class="tiles">
+
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div id="root"></div>
+					</footer>
+
+			</div>
+      
+		<!-- Scripts -->
+			<script src="%PUBLIC_URL%/js/jquery.min.js"></script>
+			<script src="%PUBLIC_URL%/js/browser.min.js"></script>
+			<script src="%PUBLIC_URL%/js/breakpoints.min.js"></script>
+			<script src="%PUBLIC_URL%/js/util.js"></script>
+			<script src="%PUBLIC_URL%/js/main.js"></script>
+
+	</body>
+ 
+
 </html>
