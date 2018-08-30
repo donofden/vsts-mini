@@ -9,9 +9,34 @@ class App extends Component {
         vstsToken: myConfig.vstsToken,
         accountName: myConfig.accountName,
         project: myConfig.project,
-        planID: myConfig.planID
+        planID: myConfig.planID,
+        planData: []
       }
     }
+  componentDidMount() {
+      let header = new Headers();
+      header.append("Authorization", "Basic " + myConfig.vstsToken);
+      
+      fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.project + "/_apis/work/plans/" + myConfig.planID, {
+        method: "GET",
+        headers: header
+      }).then(response => response.json())
+        .then( planData => this.setState({planData: planData.properties.markers}))
+  }
+  renderPlan() {
+    console.log(this.state.planData);
+    return this.state.planData.map(function(plan) {
+      
+      let crmPlans = plan.label.toLowerCase();
+        if (crmPlans.indexOf("crm") > -1) {
+          return <tr>
+            <td>{crmPlans}</td>
+            <td>{plan.date}</td>
+            <td><a style={{backgroundColor: plan.color}}>{plan.color}{plan.color}</a></td>
+          </tr>
+        }
+    });
+  }
   render() {
     return (
       <div>
@@ -26,6 +51,16 @@ class App extends Component {
 
             <h2 id="team" className="h2-style">{this.state.accountName}</h2>
             <p id="release" className="p-release-style"></p>
+            <div>
+              <table>
+                <tr>
+                  <th>Release</th>
+                  <th>Date</th> 
+                  <th>color</th>
+                </tr>
+                {this.renderPlan()}
+              </table>
+            </div>
           </div>
       </div>
     </div>
