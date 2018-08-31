@@ -32,7 +32,10 @@ explain:
 	# $$ make start 
 	#
 	#
-help:
+	### Targets
+	#
+	@cat Makefile* | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+help: ## help to set up the project
 	@echo
 	@echo "Current version: $(CURRENT_VERSION)"
 	@echo
@@ -44,21 +47,21 @@ help:
 	@echo "  make clean            - remove node modules"
 	@echo "  "
 
-info:
+info: ## Show if node, npm, yarn, js is installed 
 	@echo node version: `$(NODE) --version` "($(NODE))"
 	@echo npm version: `$(NPM) --version` "($(NPM))"
 	@echo yarn version: `$(YARN) --version` "($(YARN))"
 	@echo jq version: `$(JQ) --version` "($(JQ))"
 
-start:
+start: ## to start the application 
 	@npm start
 
 .PHONY: clean
-clean:
+clean: ## Clean the local filesystem
 	rm -fr node_modules
 
 .PHONY: install
-install:
+install: ## Install the application
 # Install npm
 	npm install
 # Install jq
