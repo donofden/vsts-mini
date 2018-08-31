@@ -6,6 +6,19 @@ A Count down timer screen to show the next release from Visual Studio Team Servi
 # **How to Run / Install**
 - Run `make` will help you to see the list of commands to get started.
 
+# **Installation via Docker**
+
+Use the docker hub image
+
+`docker pull parithiban/vsts-mini:2018.08.01`
+
+After the image is built or downloaded run
+
+`docker run -p 49160:3000 parithiban/vsts-mini:2018.08.01`
+
+Then navigate to  http://localhost:49160/
+
+
 # Setting up config
 
 Following need to be updated in `src/config.sample.js` :
