@@ -133,7 +133,7 @@ class App extends Component {
               <p>VSTS Delivery Timeline View</p>
           </div>
           <div className="middle">
-            <h1>Development Tooling and Engineering POD</h1>
+            <h1>{myConfig.titleName}</h1>
             <hr></hr>
             <h3>Next Release</h3>
             <h2 id="team" className="h2-style">
