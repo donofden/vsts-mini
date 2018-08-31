@@ -39,8 +39,8 @@ class App extends Component {
           let release = this.findNextRelease();
 
           let now = new Date().getTime();
-          let mydate = new Date(release[0].date).getTime();
-          let countDownDate = (mydate - now) / 1000;
+          let nextReleaseDate = new Date(release[0].date).getTime();
+          let countDownDate = (nextReleaseDate - now) / 1000;
           this.setState({name: release[0].label, color: release[0].color});
           this.setState({seconds: countDownDate});
         });
@@ -67,15 +67,6 @@ class App extends Component {
           plan.timeDiff = arrayKey;
           i++;
       }
-
-      let crmPlans = plan.label.toLowerCase();
-        if (crmPlans.indexOf("crm") > -1) {
-          return <tr key={plan.date}>
-            <td>{crmPlans}</td>
-            <td>{plan.date}</td>
-            <td><a style={{backgroundColor: plan.color}}>{plan.color}{plan.color}</a></td>
-          </tr>
-        }
     });
     let newData  = release.slice(0, 1).map(function(plan) {
       return plan;
