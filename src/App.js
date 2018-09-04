@@ -57,6 +57,7 @@ class App extends Component {
   renderPlan() {
     let release = [];
     let i = 0;
+    // eslint-disable-next-line
     let calculationLogic = this.state.planData.map(function(plan) {
       
       var givenTime = Date.parse(plan.date);
@@ -72,6 +73,7 @@ class App extends Component {
     let newData  = release.slice(0, 1).map(function(plan) {
       return plan;
     });
+    // eslint-disable-next-line
     this.countDown;
     return newData;
   }
@@ -99,6 +101,7 @@ class App extends Component {
 
   startTimer() {
     this.findNextRelease();
+    // eslint-disable-next-line
     if (this.timer == 0) {
       this.timer = setInterval(this.countDown, 1000);
     }
@@ -112,6 +115,7 @@ class App extends Component {
       seconds: seconds,
     });
     // Check if we're at zero.
+    // eslint-disable-next-line
     if (seconds == 0) {
       clearInterval(this.timer);
     }
