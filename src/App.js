@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { myConfig } from './config.js';
+import Menu from "./Menu/Menu.js";
 
 class App extends Component {
   constructor(){
@@ -119,6 +120,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Menu />
         <div className="bgimg">
           <div className="topleft">
               <p>VSTS Delivery Timeline View</p>
