@@ -13,7 +13,7 @@ class Iterations extends Component {
     componentDidMount() {
      
         let bodyClassElements = document.body.classList;
-        if (bodyClassElements.value == 'nav-active') {
+        if (bodyClassElements.value === 'nav-active') {
             bodyClassElements.remove('nav-active');
           }
       
@@ -38,6 +38,7 @@ class Iterations extends Component {
             .then( iterationWorkItems => this.setState({iterationWorkItems: iterationWorkItems.workItemRelations}))
     }
     render() {
+      let workItemURL = 'https://emisgroup.visualstudio.com/emishealth/_workitems/edit/'
       return (
          <div>
             <div> 
@@ -51,7 +52,7 @@ class Iterations extends Component {
             
             <div>
               {this.state.iterationWorkItems.map(workitems => workitems=== null ? 'No items found' :
-                     <p key={workitems.target.id}>{workitems.target.id} - <a href={myConfig.workItemURL + workitems.target.id}target="_blank">{workitems.target.url}</a></p>
+                     <p key={workitems.target.id}>{workitems.target.id} - <a href={workItemURL + workitems.target.id}target="_blank">{workitems.target.url}</a></p>
                     )}
             </div>
          </div>
