@@ -64,6 +64,8 @@ clean: ## Clean the local filesystem
 install: ## Install the application
 # Install npm
 	npm install
+# Install react router package
+	npm install --save react-router-dom
 # Install jq
 ifeq ($(OS),Darwin)
 	# Run MacOS commands
