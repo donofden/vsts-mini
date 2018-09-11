@@ -124,7 +124,7 @@ class ReleasePlan extends Component {
       }
    render() {
     let releaseContent =  '';
-    if(typeof(this.state.planData) == 'undefined') {
+    if(this.state.planData.length === 0 || typeof(this.state.planData) == 'undefined') {
       releaseContent = <div>
         <div className="topleft">
           <p><img alt="No data" src="./images/nodata.gif"></img></p>
