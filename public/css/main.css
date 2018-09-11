@@ -1,5 +1,10 @@
 body,
 html {
 	margin: 0;
-	/* background-color: black; */
+	background-color: #222930;
+}
+.page-title {
+	color: #f7feff;
+	text-decoration: none;
+	transition: color 0.3s ease;
 }
