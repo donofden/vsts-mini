@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 
 
 class TeamChart extends Component {
-   componentDidMount() {
-    let bodyClassElements = document.body.classList;
-    if (bodyClassElements.value == 'nav-active') {
-        bodyClassElements.remove('nav-active');
-      }
-   }
     render() {
       return (
          <div>
             <h2>Team Chart</h2>
-            <p><img src="https://emisdevtools.visualstudio.com/Objectives/287c536c-bbe0-458a-96df-d0fb1723eb36/_api/_teamChart/Velocity?chartOptions=%7B%22Width%22%3A1246%2C%22Height%22%3A586%2C%22ShowDetails%22%3Atrue%2C%22Title%22%3A%22%22%7D&counter=3&teamId=c3c4741e-484f-4255-bf36-d0db9bf656bd&iterationsNumber=5&__v=5"></img></p>
+            <p><img alt="Sprint Velocity" src="https://emisgroup.visualstudio.com/501cfc52-3465-4c0f-854d-41d88ecde81f/_api/_teamChart/Velocity?chartOptions=%7B%22Width%22%3A1229%2C%22Height%22%3A586%2C%22ShowDetails%22%3Atrue%2C%22Title%22%3A%22%22%7D&counter=2&teamId=68870025-4d67-4f1f-9a65-2664497e3df2&iterationsNumber=5&__v=5"></img></p>
          </div>
       );
    }

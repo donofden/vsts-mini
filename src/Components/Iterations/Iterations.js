@@ -2,38 +2,29 @@ import React, { Component } from 'react';
 import { myConfig } from '../../config.js';
 
 class Iterations extends Component {
-    constructor(){
-        super()
+  constructor(){
+    global.header = new Headers();
+    global.header.append("Authorization", "Basic " + myConfig.vstsToken);
+      super()
           this.state = {
             iterationList: [],
             iterationWorkItems: [],
           };
-        this.getIterationData = this.getIterationData.bind(this);
-        }
+          this.getIterationData = this.getIterationData.bind(this);
+      }
     componentDidMount() {
-     
-        let bodyClassElements = document.body.classList;
-        if (bodyClassElements.value === 'nav-active') {
-            bodyClassElements.remove('nav-active');
-          }
-      
-        let header = new Headers();
-        header.append("Authorization", "Basic " + myConfig.vstsToken);
         this.setState({ workItemRelations: "" });
         fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.project + "/" + myConfig.teamId + "/_apis/work/teamsettings/iterations?api-version=4.1", {
           method: "GET",
-          headers: header
+          headers:  global.header
         }).then(response => response.json())
           .then( iterationList => this.setState({iterationList: iterationList.value}))
 
     }
     getIterationData(event) {
-          let header = new Headers();
-          header.append("Authorization", "Basic " + myConfig.vstsToken);
-          
           fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/" + myConfig.teamId + "/_apis/work/teamsettings/iterations/" + event.target.value + "/workitems", {
             method: "GET",
-            headers: header
+            headers: global.header
           }).then(response => response.json())
             .then( iterationWorkItems => this.setState({iterationWorkItems: iterationWorkItems.workItemRelations}))
     }

@@ -25,15 +25,6 @@ class ReleasePlan extends Component {
       componentDidMount() {
           let timeLeftVar = this.secondsToTime(this.state.seconds);
           this.setState({ time: timeLeftVar });
-          let bodyClassElements = document.body.classList;
-          console.log(bodyClassElements);
-          // if(bodyClassElements.find((classelement) => classelement === 'nav-active')) {
-          //   console.log(bodyClassElements);
-          //   bodyClassElements.remove('nav-active');
-          // }
-          if (bodyClassElements.value == 'nav-active') {
-            bodyClassElements.remove('nav-active');
-          }
           let header = new Headers();
           header.append("Authorization", "Basic " + myConfig.vstsToken);
           
@@ -41,16 +32,18 @@ class ReleasePlan extends Component {
             method: "GET",
             headers: header
           }).then(response => response.json())
-            .then( planData => this.setState({planData: planData.properties.markers}))
-            .then(data => {
-              let release = this.findNextRelease();
-    
-              let now = new Date().getTime();
-              let mydate = new Date(release[0].date).getTime();
-              let countDownDate = (mydate - now) / 1000;
-              this.setState({name: release[0].label, color: release[0].color});
-              this.setState({seconds: countDownDate});
-            });
+            .then((planData) => {
+              if (planData.properties.markers.length) {
+                  this.setState({planData: planData.properties.markers})
+                  let release = this.findNextRelease();
+
+                  let now = new Date().getTime();
+                  let mydate = new Date(release[0].date).getTime();
+                  let countDownDate = (mydate - now) / 1000;
+                  this.setState({name: release[0].label, color: release[0].color});
+                  this.setState({seconds: countDownDate});
+                }
+            })
       }
     
       findNextRelease(){
@@ -59,12 +52,10 @@ class ReleasePlan extends Component {
           return returnval;
         }
       }
-    
       renderPlan() {
         let release = [];
         let i = 0;
         let calculationLogic = this.state.planData.map(function(plan) {
-          
           var givenTime = Date.parse(plan.date);
           var currentTime = Date.parse(new Date());
     
@@ -114,7 +105,7 @@ class ReleasePlan extends Component {
     
       startTimer() {
         this.findNextRelease();
-        if (this.timer == 0) {
+        if (this.timer === 0) {
           this.timer = setInterval(this.countDown, 1000);
         }
       }
@@ -127,27 +118,36 @@ class ReleasePlan extends Component {
           seconds: seconds,
         });
         // Check if we're at zero.
-        if (seconds == 0) {
+        if (seconds === 0) {
           clearInterval(this.timer);
         }
       }
    render() {
-      return (
-        <div className="bgimg">
+    let releaseContent =  '';
+
+    if(typeof(planData) == 'undefined') {
+      releaseContent = <div>
         <div className="topleft">
-            <p>VSTS Delivery Timeline View</p>
+          <p><img alt="No data" src="./images/nodata.gif"></img></p>
         </div>
-        <div className="middle">
-          <h1>Development Tooling and Engineering POD</h1>
-          <hr></hr>
-          <h3>Next Release</h3>
-          <h2 id="team" className="h2-style">
-          <p style={{color: this.state.color}}>{this.state.name}</p>
-          {this.state.time.d}d {this.state.time.h}h {this.state.time.m}m {this.state.time.s}s {this.startTimer()}</h2>
-          <p id="release" className="p-release-style"></p>
-        </div>
-    </div>
-      );
+      </div>
+    } else {
+        releaseContent = <div className="bgimg">
+          <div className="topleft">
+              <p>VSTS Delivery Timeline View</p>
+          </div>
+          <div className="middle">
+            <h1>Development Tooling and Engineering POD</h1>
+            <hr></hr>
+            <h3>Next Release</h3>
+            <h2 id="team" className="h2-style">
+            <p style={{color: this.state.color}}>{this.state.name}</p>
+            {this.state.time.d}d {this.state.time.h}h {this.state.time.m}m {this.state.time.s}s {this.startTimer()}</h2>
+            <p id="release" className="p-release-style"></p>
+          </div>
+      </div>
+    }
+    return ( releaseContent);
    }
 }
 export default ReleasePlan;

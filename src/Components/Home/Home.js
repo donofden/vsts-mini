@@ -12,8 +12,6 @@ class Home extends Component {
         
         }
     componentDidMount() {
-     
-      
         let header = new Headers();
         header.append("Authorization", "Basic " + myConfig.vstsToken);
         this.setState({ workItemRelations: "" });
@@ -35,9 +33,9 @@ class Home extends Component {
     }
     render() {
       return (
-         <div>
-            <h2>Home</h2>
-         </div>
+        <div>
+            <h1>Home</h1>
+        </div>
 
       );
    }
