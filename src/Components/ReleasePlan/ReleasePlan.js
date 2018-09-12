@@ -133,14 +133,14 @@ class ReleasePlan extends Component {
     } else {
         releaseContent = <div className="bgimg">
           <div className="topleft">
-              <p>VSTS Delivery Timeline View</p>
+              <p className="top-title">VSTS Delivery Timeline View</p>
           </div>
           <div className="middle">
-            <h1>Development Tooling and Engineering POD</h1>
+            <h1 className="top-title">Development Tooling and Engineering POD</h1>
             <hr></hr>
-            <h3>Next Release</h3>
+            <h3 className="top-title">Next Release</h3>
             <h2 id="team" className="h2-style">
-            <p style={{color: this.state.color}}>{this.state.name}</p>
+            <p className="top-title" style={{color: this.state.color}}>{this.state.name}</p>
             {this.state.time.d}d {this.state.time.h}h {this.state.time.m}m {this.state.time.s}s {this.startTimer()}</h2>
             <p id="release" className="p-release-style"></p>
           </div>
