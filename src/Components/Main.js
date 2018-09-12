@@ -6,8 +6,7 @@ import TeamChart from '../Components/TeamChart/TeamChart'
 import Iterations from '../Components/Iterations/Iterations';
 import Teams from '../Components/Teams/Teams';
 import Trello from '../Components/Trello/Trello';
-
-
+import WorkItem from '../Components/WorkItem/WorkItem';
 
 class Main extends Component {
   render() {
@@ -20,6 +19,7 @@ class Main extends Component {
           <Route exact path='/Iterations' component={Iterations} />
           <Route exact path='/Teams' component={Teams} />
           <Route exact path='/Trello' component={Trello} />
+          <Route exact path='/WorkItem' component={WorkItem} />
         </Switch>
     </main>
     );

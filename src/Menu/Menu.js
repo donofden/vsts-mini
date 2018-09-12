@@ -42,7 +42,7 @@ class Menu extends Component {
                             <h4>Results</h4>
                             <ul>
                             <li onClick={this.resetMenu}><Link to={'/Trello'}>Trello</Link></li>
-                            <li><a href="#">Client Partners</a></li>
+                            <li onClick={this.resetMenu}><Link to={'/WorkItem'}>WorkItem</Link></li>
                             </ul>
                         </div>
                         <div className="col">

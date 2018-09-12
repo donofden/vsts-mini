@@ -3,6 +3,10 @@ import { myConfig } from '../../config.js';
 import './Home.css';
 
 class Home extends Component {
+
+    componentDidMount() {
+      // To-Do for dynamic onmouse over the text for flip flop
+    }
     render() {
       return (
         <div>
@@ -18,12 +22,12 @@ class Home extends Component {
               <span data-text="I">I</span>
             </p>
             <div id='c'>
-              <div class='s'></div>
-              <div class='s'></div>
-              <div class='s'></div>
-              <div class='s'></div>
-              <div class='s'></div>
-              <div class='s'></div>
+              <div className='s'></div>
+              <div className='s'></div>
+              <div className='s'></div>
+              <div className='s'></div>
+              <div className='s'></div>
+              <div className='s'></div>
             </div>
         </div>
       );
