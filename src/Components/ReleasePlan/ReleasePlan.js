@@ -25,6 +25,7 @@ class ReleasePlan extends Component {
       componentDidMount() {
           let timeLeftVar = this.secondsToTime(this.state.seconds);
           this.setState({ time: timeLeftVar });
+          this.setState({apiData: ''});
           let header = new Headers();
           header.append("Authorization", "Basic " + myConfig.vstsToken);
           
@@ -42,6 +43,7 @@ class ReleasePlan extends Component {
                   let countDownDate = (mydate - now) / 1000;
                   this.setState({name: release[0].label, color: release[0].color});
                   this.setState({seconds: countDownDate});
+                  this.setState({apiData: this.state.planData.length});
                 }
             })
       }
@@ -124,7 +126,7 @@ class ReleasePlan extends Component {
       }
    render() {
     let releaseContent =  '';
-    if(this.state.planData.length === 0 || typeof(this.state.planData) == 'undefined') {
+    if(this.state.apiData === 0 ) {
       releaseContent = <div>
         <div className="topleft">
           <p><img alt="No data" src="./images/nodata.gif"></img></p>
