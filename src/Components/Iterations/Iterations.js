@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { myConfig } from '../../config.js';
+import { Route, Link } from 'react-router-dom';
 
 class Iterations extends Component {
   constructor(){
@@ -9,8 +10,10 @@ class Iterations extends Component {
           this.state = {
             iterationList: [],
             iterationWorkItems: [],
+            workItemDetails: ''
           };
           this.getIterationData = this.getIterationData.bind(this);
+          this.fetchWorkItemDetails = this.fetchWorkItemDetails.bind(this);
       }
     componentDidMount() {
         this.setState({ workItemRelations: "" });
@@ -28,6 +31,15 @@ class Iterations extends Component {
           }).then(response => response.json())
             .then( iterationWorkItems => this.setState({iterationWorkItems: iterationWorkItems.workItemRelations}))
     }
+    fetchWorkItemDetails() {
+        fetch("https://emisgroup.visualstudio.com/_apis/wit/workItems/150", {
+            method: "GET",
+            headers: global.header
+        }).then(response => response.json())
+          .then(workItemDetails => {
+              this.setState({ workItemDetails: workItemDetails.fields })
+        })
+    }
     render() {
       let workItemURL = 'https://emisgroup.visualstudio.com/emishealth/_workitems/edit/'
       return (
@@ -43,7 +55,7 @@ class Iterations extends Component {
             
             <div>
               {this.state.iterationWorkItems.map(workitems => workitems=== null ? 'No items found' :
-                     <p key={workitems.target.id}>{workitems.target.id} - <a href={workItemURL + workitems.target.id}target="_blank">{workitems.target.url}</a></p>
+                    <Link to={'/WorkItem/'+ workitems.target.id} className="linkColor"><h4>{workitems.target.url}</h4></Link>
                     )}
             </div>
          </div>

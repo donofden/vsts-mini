@@ -19,7 +19,7 @@ class Main extends Component {
           <Route exact path='/Iterations' component={Iterations} />
           <Route exact path='/Teams' component={Teams} />
           <Route exact path='/Trello' component={Trello} />
-          <Route exact path='/WorkItem' component={WorkItem} />
+          <Route exact path='/WorkItem/:id' component={WorkItem} />
         </Switch>
     </main>
     );
