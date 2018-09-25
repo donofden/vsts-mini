@@ -36,7 +36,6 @@ class WorkItem extends Component {
     }
     render() {
         const workItemDescription = this.state.workItemDetails['System.Description'];
-
         return (
           <div className="workitem">
               <div className="timeline">
@@ -57,11 +56,13 @@ class WorkItem extends Component {
                         <p>
                         <a href="javascript:void(0)" onClick={this.fetchWorkItemComments}>Comments</a>
                         </p>
+                        <div className="workItemMaxWidth">
                             {this.state.workItemComments.length ?
                                 this.state.workItemComments.map(comments =>
-                                   <div><p>{ReactHtmlParser(comments.text)}</p></div>
+                                   <span key={comments.revision}>{ReactHtmlParser(comments.text)}</span>
                                   ) : ""
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
