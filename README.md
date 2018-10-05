@@ -34,4 +34,4 @@ Then rename the file to `config.js`
 
 **Count Down**
 
-![Full screen](plan-countdown.png)
+![Full screen](VSTS-MINI-Delivery-plan.png)
