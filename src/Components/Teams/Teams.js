@@ -12,7 +12,8 @@ class Teams extends Component {
             iterationList: [],
             loading: false,
             iterationWorkItems: [],
-            workItemDetails: []
+            workItemDetails: [],
+            emptyData: false
           };
           this.getIterationList = this.getIterationList.bind(this);
           this.getWorkItems = this.getWorkItems.bind(this);
@@ -48,11 +49,17 @@ class Teams extends Component {
       }).then(response => response.json())
         .then( iterationWorkItems => {
             var workItemIds = [];
-            for (var workItem of iterationWorkItems.workItemRelations) {
-              workItemIds.push(workItem.target.id);
-            }
 
-            this.getWorkItemFullDetails(workItemIds.join(','));
+            if (typeof(iterationWorkItems.workItemRelations) === "undefined") {
+              this.setState({emptyData: true});
+            } else {
+              this.setState({emptyData: false});
+              for (var workItem of iterationWorkItems.workItemRelations) {
+                workItemIds.push(workItem.target.id);
+              }
+
+              this.getWorkItemFullDetails(workItemIds.join(','));
+            }
         })
     }
     getWorkItemFullDetails(workItemIds) {
@@ -64,6 +71,7 @@ class Teams extends Component {
     }
     render() {
       let iterationListHtml;
+      let workItemDetails;
 
       if (this.state.loading) {
         iterationListHtml = <div>Loading...</div>;
@@ -74,6 +82,13 @@ class Teams extends Component {
             <option key={iteration.id} value={iteration.id}>{iteration.name}</option>
           )}
         </select>
+      }
+      if(this.state.emptyData) {
+        workItemDetails = "Oops!! No data found";
+      } else {
+        workItemDetails = <div> {this.state.workItemDetails.map(workItemInfo =>
+          <div key={workItemInfo.id}><Link to={'/WorkItem/'+ workItemInfo.id} className="whiteText">{workItemInfo.fields['System.Title']}</Link></div>
+        )}</div>
       }
       return (
           <div>
@@ -88,11 +103,7 @@ class Teams extends Component {
             <div>
                   {iterationListHtml}
             </div>
-            <div>
-            {this.state.workItemDetails.map(workItemInfo =>
-                <div key={workItemInfo.id}><Link to={'/WorkItem/'+ workItemInfo.id} className="whiteText">{workItemInfo.fields['System.Title']}</Link></div>
-            )}
-            </div>
+                  {workItemDetails}
           </div>
       );
     }
