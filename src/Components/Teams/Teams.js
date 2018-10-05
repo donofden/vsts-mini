@@ -30,13 +30,11 @@ class Teams extends Component {
       }
 
     getIterationList(e) {
-        let header = new Headers();
-        header.append("Authorization", "Basic " + myConfig.vstsToken);
-        this.setState({loading: true})
+          this.setState({loading: true})
 
           fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/" + e.target.value + "/_apis/work/teamsettings/iterations", {
             method: "GET",
-            headers: header
+            headers: global.header
           })
           .then(response => response.json())
           .then( iterationList => {
@@ -66,7 +64,7 @@ class Teams extends Component {
     }
     render() {
       let iterationListHtml;
-      console.log(this.state.workItemDetails)
+
       if (this.state.loading) {
         iterationListHtml = <div>Loading...</div>;
       } else {

@@ -3,30 +3,51 @@ import { Link } from 'react-router-dom';
 import './Menu.css';
 
 class Menu extends Component {
+    constructor() {
+        super()
+          this.state = {
+            mastHeadHeaderCss: 'masthead header-css',
+            hamburgerBoring :'hamburger hamburger--boring',
+            siteNav : 'site-nav nav-new-css'
+          };
+          this.resetMenu = this.resetMenu.bind(this);
+    }
+
     resetMenu() {
         let bodyClassElements = document.getElementsByClassName("masthead")[0].className;
+
         if (bodyClassElements.indexOf('is-active') > 0 ) {
-            bodyClassElements = 'masthead header-css';
+            this.setState({
+                mastHeadHeaderCss: 'masthead header-css',
+                hamburgerBoring: 'hamburger hamburger--boring',
+                siteNav : 'site-nav nav-new-css'
+            })
         }
     }
     render() {
+        let mastHeadHeaderCss = this.state.mastHeadHeaderCss;
+        let hamburgerBoring = this.state.hamburgerBoring;
+        let siteNav = this.state.siteNav;
+
         return (
           <menu>
               <div>
               <div className="hero">
-                    <div className="masthead header-css" role="banner">
+                    <div className={mastHeadHeaderCss} role="banner">
                     <div className="container">
-                        <button className="hamburger hamburger--boring" type="button">
+                    <div>
+                        <button className={hamburgerBoring} type="button" onClick={this.testMenu}>
                         <span className="hamburger-box">
                             <span className="hamburger-inner"></span>
                         </span>
                         <span className="hamburger-label">Menu</span>
                         </button>
+                    </div>
                     <div className="masthead-search form-css">
                     <input type="search" name="s" aria-labelledby="search-label" placeholder="Search&hellip;" className="draw"></input>
                         <button type="submit">&rarr;</button>
                         </div>
-                        <div className="site-nav nav-new-css" role="navigation">
+                        <div className={siteNav} role="navigation">
                         <div className="col">
                             <h4>Expertise</h4>
                             <ul>
