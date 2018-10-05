@@ -3,7 +3,7 @@ export const myConfig = {
     accountName: 'ACCOUNT_NAME',
     project: 'PROJECT',
     planID: 'PLAN_ID',
-    titleName: 'YOUR PROJECT NAME',
     teamId: 'TEAM_ID',
-    projectId: 'PROJECT_ID'
+    projectId: 'PROJECT_ID',
+    rootUrl: "dev.azure.com"
 };
