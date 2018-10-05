@@ -1,7 +1,10 @@
 ## VSTS  MINI 
 
-A Count down timer screen to show the next release from Visual Studio Team Service Plan
-- This will fetch plan details from VSTS plan and pick the next release based on the markers and run a count down for the release.
+A minified version of the Azure DevOps, wherein we can read the workitems/ delivery plans/ Team chart/ Trello view (in design phase)
+
+Workitems - We can read the workitems based on the team and sprint, this also gives a list of cards been worked on in a particular sprint.
+delivery plans - The delivery plans will be shown in a countdown fashion based on the data provided in the Azure plan
+Team chart - This gives the velocity of the team from last 3 sprints, so it will be helpful to plan the sprint.
 
 # **How to Run / Install**
 - Run `make` will help you to see the list of commands to get started.
