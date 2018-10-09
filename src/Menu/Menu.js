@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { myConfig } from '../config.js';
 
 class Menu extends Component {
     constructor() {
+        global.header = new Headers();
+        global.header.append("Authorization", "Basic " + myConfig.vstsToken);
         super()
           var segment_str = window.location.pathname; // return segment1/segment2/segment3/segment4
-          console.log('segment_str'+segment_str);
           var segment_array = segment_str.split( '/' );
-          console.log('segment_array'+segment_array);
           var last_segment = segment_array.pop();
-          console.log('last_segment'+last_segment);
-          this.state = {last_segment: last_segment};
+          this.state = {
+              last_segment: last_segment,
+              teamsInPod: []
+            };
     }
+
+    componentDidMount() {
+        let header = new Headers();
+        header.append("Authorization", "Basic " + myConfig.vstsToken);
+          fetch("https://" + myConfig.accountName + ".visualstudio.com/_apis/teams?api-version=4.1-preview.2", {
+            method: "GET",
+            headers: header
+          }).then(response => response.json())
+            .then( teamsInPod => this.setState({teamsInPod: teamsInPod.value}))
+      }
+
     render() {
         const last_segment = this.state.last_segment;
         console.log('last state '+last_segment);
@@ -33,13 +47,11 @@ class Menu extends Component {
                             </div>
                         </form>
                         <form className="navbar-form navbar-left">
-                            <select className="form-control">
-                                <option value="cheese">Internal Business Systems</option>
-                                <option value="tomatoes">Tomatoes</option>
-                                <option value="mozarella">Mozzarella</option>
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
+                            <select className="form-control" onChange={this.getIterationList}>
+                                <option key="">Choose team</option>
+                                {this.state.teamsInPod.map(team =>
+                                <option key={team.id} value={team.id}>{team.name}</option>
+                                )}
                             </select>
                         </form>
                         <div id="navbar-menu">
