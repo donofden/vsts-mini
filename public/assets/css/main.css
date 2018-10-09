@@ -1773,3 +1773,9 @@ li > a.active {
 .velocity-img {
   max-width: 100%;
 }
+
+.count-down {
+  background-color: antiquewhite;
+  border-color: #FFF;
+  border: solid 2px #FFF;
+}

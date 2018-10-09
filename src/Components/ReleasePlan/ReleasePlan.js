@@ -129,22 +129,69 @@ class ReleasePlan extends Component {
     if(this.state.apiData === 0 ) {
       releaseContent = <div>
         <div className="topleft">
-          <p><img alt="No data" src="./images/nodata.gif"></img></p>
+          <h1>No Data to show</h1>
         </div>
       </div>
     } else {
         releaseContent = <div>
           <div class="container text-center">
-              <h3 className="text-muted">VSTS Delivery Timeline View</h3>
-              <h1 className="text-success">Development Tooling and Engineering POD</h1>
+              <h3 className="text-muted text-center">VSTS Delivery Timeline View</h3>
+              <h2 className="text-success text-center">Development Tooling and Engineering POD</h2>
               <hr></hr>
               <br></br>
-              <h3 className="text-warning">Next Release</h3>
+              <h3 className="text-muted text-center">Next Release</h3>
               <br></br>
-              <h2 className="" style={{color: this.state.color}}>{this.state.name}</h2>
+              <h2 className="text-center" style={{color: this.state.color}}>{this.state.name}</h2>
               <br></br>
-              <button type="button" class="btn btn-primary btn-lg">{this.state.time.d}d {this.state.time.h}h {this.state.time.m}m {this.state.time.s}s {this.startTimer()}</button>
         </div>
+        <br></br>
+        {this.startTimer()}
+        <div class="awards">
+            <div class="row">
+
+            <div class="col-md-3 col-sm-6">
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <div class="col-md-3 col-sm-6 count-down">
+                <div class="award-item">
+                  <div class="">
+                    <h1> {this.state.time.d}</h1>
+                  </div>
+                  <span>Days</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 count-down">
+                <div class="award-item">
+                  <div class="">
+                  <h1> {this.state.time.h}</h1>
+                  </div>
+                  <span>Hours</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 count-down">
+                <div class="award-item">
+                  <div class="">
+                  <h1> {this.state.time.m}</h1>
+                  </div>
+                  <span>Minutes</span>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 count-down">
+                <div class="award-item">
+                  <div class="">
+                  <h1> {this.state.time.s}</h1>
+                  </div>
+                  <span>Seconds</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+            </div>
+
+            </div>
+          </div>
       </div>
     }
     return (releaseContent);
