@@ -1765,3 +1765,11 @@ ul.activity-timeline > li {
     border: 1px solid #CCC; }
 
 /*# sourceMappingURL=main.css.map */
+
+li > a.active {
+  background-color: #252c35;
+  border-left-color: #00AAFF;
+}
+.velocity-img {
+  max-width: 100%;
+}

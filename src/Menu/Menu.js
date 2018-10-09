@@ -7,15 +7,10 @@ class Menu extends Component {
         global.header = new Headers();
         global.header.append("Authorization", "Basic " + myConfig.vstsToken);
         super()
-          var segment_str = window.location.pathname; // return segment1/segment2/segment3/segment4
-          var segment_array = segment_str.split( '/' );
-          var last_segment = segment_array.pop();
           this.state = {
-              last_segment: last_segment,
               teamsInPod: []
             };
     }
-
     componentDidMount() {
         let header = new Headers();
         header.append("Authorization", "Basic " + myConfig.vstsToken);
@@ -27,8 +22,9 @@ class Menu extends Component {
       }
 
     render() {
-        const last_segment = this.state.last_segment;
-        console.log('last state '+last_segment);
+        let segment_str = window.location.pathname; // return segment1/segment2/segment3/segment4
+        let segment_array = segment_str.split( '/' );
+        let last_segment = segment_array.pop();
         return (
           <menu>
               <div>  
@@ -92,32 +88,32 @@ class Menu extends Component {
                         <nav>
                             <ul className="nav">
                                 <li>
-                                    <Link to={'/'}>
-                                        <a href="#" className="">
+                                    <Link to={'/'} className={last_segment == "" ? "active" : ""}>
+                                        <a>
                                             <i className="lnr lnr-home"></i> 
                                             <span>Home</span>
                                         </a>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to={'/TeamChart'}>
-                                        <a href="#" className="">
+                                    <Link to={'/TeamChart'} className={last_segment == "TeamChart" ? "active" : ""}>
+                                        <a>
                                             <i className="lnr lnr-chart-bars"></i>
                                             <span>Team Chart</span>
                                         </a>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to={'/Teams'}>
-                                        <a href="#" className="active">
+                                    <Link to={'/Teams'} className={last_segment == "Teams" ? "active" : ""}>
+                                        <a>
                                             <i className="lnr lnr-dice"></i>
                                             <span>Board</span>
                                         </a>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to={'/ReleasePlan'}>
-                                        <a href="#" className="">
+                                    <Link to={'/ReleasePlan'}  className={last_segment == "ReleasePlan" ? "active" : ""}>
+                                        <a>
                                             <i className="lnr lnr-rocket"></i>
                                             <span>Plan</span>
                                         </a>

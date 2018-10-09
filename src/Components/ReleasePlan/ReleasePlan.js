@@ -133,19 +133,18 @@ class ReleasePlan extends Component {
         </div>
       </div>
     } else {
-        releaseContent = <div className="bgimg">
-          <div className="topleft">
-              <p className="top-title">VSTS Delivery Timeline View</p>
-          </div>
-          <div className="middle">
-            <h1 className="top-title">Development Tooling and Engineering POD</h1>
-            <hr></hr>
-            <h3 className="top-title">Next Release</h3>
-            <h2 id="team" className="h2-style">
-            <p className="top-title" style={{color: this.state.color}}>{this.state.name}</p>
-            {this.state.time.d}d {this.state.time.h}h {this.state.time.m}m {this.state.time.s}s {this.startTimer()}</h2>
-            <p id="release" className="p-release-style"></p>
-          </div>
+        releaseContent = <div>
+          <div class="container text-center">
+              <h3 className="text-muted">VSTS Delivery Timeline View</h3>
+              <h1 className="text-success">Development Tooling and Engineering POD</h1>
+              <hr></hr>
+              <br></br>
+              <h3 className="text-warning">Next Release</h3>
+              <br></br>
+              <h2 className="" style={{color: this.state.color}}>{this.state.name}</h2>
+              <br></br>
+              <button type="button" class="btn btn-primary btn-lg">{this.state.time.d}d {this.state.time.h}h {this.state.time.m}m {this.state.time.s}s {this.startTimer()}</button>
+        </div>
       </div>
     }
     return (releaseContent);
