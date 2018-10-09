@@ -12,15 +12,25 @@ class Main extends Component {
   render() {
     return (
       <main>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/ReleasePlan' component={ReleasePlan} />
-          <Route exact path='/TeamChart' component={TeamChart} />
-          <Route exact path='/Iterations' component={Iterations} />
-          <Route exact path='/Teams' component={Teams} />
-          <Route exact path='/Trello' component={Trello} />
-          <Route exact path='/WorkItem/:id' component={WorkItem} />
-        </Switch>
+        		<div className="main">
+              <div className="main-content">
+                <div className="container-fluid">
+                  <div className="panel panel-headline">
+                    <div className="panel-body">
+                    <Switch>
+                      <Route exact path='/' component={Home} />
+                      <Route exact path='/ReleasePlan' component={ReleasePlan} />
+                      <Route exact path='/TeamChart' component={TeamChart} />
+                      <Route exact path='/Iterations' component={Iterations} />
+                      <Route exact path='/Teams' component={Teams} />
+                      <Route exact path='/Trello' component={Trello} />
+                      <Route exact path='/WorkItem/:id' component={WorkItem} />
+                    </Switch>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
     </main>
     );
   }

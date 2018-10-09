@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class TeamChart extends Component {
     render() {
       return (
