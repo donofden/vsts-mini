@@ -7,7 +7,7 @@ import Iterations from '../Components/Iterations/Iterations';
 import Teams from '../Components/Teams/Teams';
 import Trello from '../Components/Trello/Trello';
 import WorkItem from '../Components/WorkItem/WorkItem';
-import Build from '../Components/Build/Build';
+import BuildDefinition from './BuildDefinition/BuildDefinition';
 
 class Main extends Component {
   render() {
@@ -26,7 +26,7 @@ class Main extends Component {
                       <Route exact path='/Teams' component={Teams} />
                       <Route exact path='/Trello' component={Trello} />
                       <Route exact path='/WorkItem/:id' component={WorkItem} />
-                      <Route exact path='/Build' component={Build} />
+                      <Route exact path='/BuildDefinition' component={BuildDefinition} />
                     </Switch>
                   </div>
                 </div>

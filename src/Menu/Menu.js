@@ -120,7 +120,7 @@ class Menu extends Component {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to={'/Build'}  className={last_segment == "Build" ? "active" : ""}>
+                                    <Link to={'/BuildDefinition'}  className={last_segment == "BuildDefinition" ? "active" : ""}>
                                         <a>
                                             <i className="lnr lnr-rocket"></i>
                                             <span>Build</span>
