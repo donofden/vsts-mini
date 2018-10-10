@@ -89,17 +89,17 @@ class Teams extends Component {
       } else {
         workItemDetails = <div> {this.state.workItemDetails.map(workItemInfo =>
               <li class="list-group-item d-flex justify-content-between align-items-center" key={workItemInfo.id}>
-              <span type="button" class="btn-xs btn-circle"> {workItemInfo.id} </span>
-              {(workItemInfo.fields['System.WorkItemType'] == 'User Story' ? (<span class="lnr lnr-book"></span>) : (''))}
-              {(workItemInfo.fields['System.WorkItemType'] == 'Bug' ? (<span class="lnr lnr-bug"></span>) : (''))}
-              {(workItemInfo.fields['System.WorkItemType'] == 'Task' ? (<span class="lnr lnr-file-add"></span>) : (''))}
+              <span type="button" class="btn-xs btn-circle text-success"> {workItemInfo.id} </span>
+              {(workItemInfo.fields['System.WorkItemType'] == 'User Story' ? (<span class="lnr lnr-book text-primary"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] == 'Bug' ? (<span class="lnr lnr-bug text-danger"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] == 'Task' ? (<span class="lnr lnr-file-add text-warning"></span>) : (''))}
 
                 <Link to={'/WorkItem/'+ workItemInfo.id} className="whiteText"> {workItemInfo.fields['System.Title']}</Link>
 
-                <span class="badge">{workItemInfo.fields['System.BoardColumn']}</span>
+                <span class="badge badge-info">{workItemInfo.fields['System.BoardColumn']}</span>
 
                 {(workItemInfo.fields['Microsoft.VSTS.Scheduling.StoryPoints'] > 0 ? (
-                  <span class="badge">{workItemInfo.fields['Microsoft.VSTS.Scheduling.StoryPoints']} sp</span>
+                  <span class="badge badge-warning">{workItemInfo.fields['Microsoft.VSTS.Scheduling.StoryPoints']} sp</span>
                 ) : (''))}
               </li>
         )}</div>
