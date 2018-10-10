@@ -29,8 +29,8 @@ class Menu extends Component {
           <menu>
               <div>  
                 <nav className="navbar navbar-default navbar-fixed-top">
-                    <div className="brand">
-                        <a href="#">VSTS-MINI</a>
+                    <div class="brand">
+                        <a href="index.html"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></img></a>
                     </div>
 			        <div className="container-fluid">
                         <div className="navbar-btn">
