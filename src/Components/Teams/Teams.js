@@ -83,27 +83,49 @@ class Teams extends Component {
           )}
         </select>
       }
+      
       if(this.state.emptyData) {
         workItemDetails = "Oops!! No data found";
       } else {
         workItemDetails = <div> {this.state.workItemDetails.map(workItemInfo =>
-          <div key={workItemInfo.id}><Link to={'/WorkItem/'+ workItemInfo.id} className="whiteText">{workItemInfo.fields['System.Title']}</Link></div>
+              <li class="list-group-item d-flex justify-content-between align-items-center" key={workItemInfo.id}>
+              <span type="button" class="btn-xs btn-circle"> {workItemInfo.id} </span>
+              {(workItemInfo.fields['System.WorkItemType'] == 'User Story' ? (<span class="lnr lnr-book"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] == 'Bug' ? (<span class="lnr lnr-bug"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] == 'Task' ? (<span class="lnr lnr-file-add"></span>) : (''))}
+
+                <Link to={'/WorkItem/'+ workItemInfo.id} className="whiteText"> {workItemInfo.fields['System.Title']}</Link>
+
+                <span class="badge">{workItemInfo.fields['System.BoardColumn']}</span>
+
+                {(workItemInfo.fields['Microsoft.VSTS.Scheduling.StoryPoints'] > 0 ? (
+                  <span class="badge">{workItemInfo.fields['Microsoft.VSTS.Scheduling.StoryPoints']} sp</span>
+                ) : (''))}
+              </li>
         )}</div>
       }
       return (
           <div>
-            <div className="custom-select">
-              <select id="teamsList" onChange={this.getIterationList}>
-                    <option key="">Choose team</option>
-                    {this.state.teamsInPod.map(team =>
-                      <option key={team.id} value={team.id}>{team.name}</option>
-                    )}
-              </select>
+            <div className="row">
+              <div className="col-md-6">
+              <span>Select Team : </span>
+                  <select id="teamsList" onChange={this.getIterationList}>
+                        <option key="">Choose team</option>
+                        {this.state.teamsInPod.map(team =>
+                          <option key={team.id} value={team.id}>{team.name}</option>
+                        )}
+                  </select>
+              </div>
+              <div className="col-md-6">
+              <span>Select Iteration : </span>
+              {iterationListHtml}
+              </div>
             </div>
-            <div>
-                  {iterationListHtml}
-            </div>
-                  {workItemDetails}
+            <hr></hr>
+            <ul class="list-group">
+              {workItemDetails}
+            </ul>
+                  
           </div>
       );
     }
