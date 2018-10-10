@@ -119,6 +119,14 @@ class Menu extends Component {
                                         </a>
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link to={'/Build'}  className={last_segment == "Build" ? "active" : ""}>
+                                        <a>
+                                            <i className="lnr lnr-rocket"></i>
+                                            <span>Build</span>
+                                        </a>
+                                    </Link>
+                                </li>
                             </ul>
                         </nav>
                     </div>
