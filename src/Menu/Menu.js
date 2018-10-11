@@ -19,9 +19,13 @@ class Menu extends Component {
             headers: header
           }).then(response => response.json())
             .then( teamsInPod => this.setState({teamsInPod: teamsInPod.value}))
+           
       }
 
     render() {
+        // Re-Size Dashboard
+        document.body.className = "layout-fullwidth";
+        
         let segment_str = window.location.pathname; // return segment1/segment2/segment3/segment4
         let segment_array = segment_str.split( '/' );
         let last_segment = segment_array.pop();
@@ -30,7 +34,7 @@ class Menu extends Component {
               <div>  
                 <nav className="navbar navbar-default navbar-fixed-top">
                     <div class="brand">
-                        <a href="index.html"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></img></a>
+                        <a href="index.html"><img src="../assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></img></a>
                     </div>
 			        <div className="container-fluid">
                         <div className="navbar-btn">
@@ -70,7 +74,7 @@ class Menu extends Component {
                                 </li>
                                 <li className="dropdown">
                                     <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="assets/img/user.png" className="img-circle" alt="Avatar"></img>
+                                    <img src="../assets/img/user.png" className="img-circle" alt="Avatar"></img>
                                         <span>Guest</span>
                                         <i className="icon-submenu lnr lnr-chevron-down"></i>
                                     </a>
