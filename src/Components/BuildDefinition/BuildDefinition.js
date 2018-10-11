@@ -9,7 +9,8 @@ class BuildDefinition extends Component {
             this.state = {
                 buildDetails: [],
                 buildDefinitions: [],
-                emptyData: false
+                emptyData: false,
+                loading: false
             };
         this.getBuildDetails = this.getBuildDetails.bind(this);
       }
@@ -36,39 +37,47 @@ class BuildDefinition extends Component {
             })
         }
     getBuildDetails(buildIds) {
-            fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/_apis/build/Builds?definitions=" + buildIds + "&resultFilter=2&maxBuildsPerDefinition=1", {
+        this.setState({loading: true});
+        fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/_apis/build/Builds?definitions=" + buildIds + "&resultFilter=2&maxBuildsPerDefinition=1", {
                   method: "GET",
                   headers: global.header
             }).then(response => response.json())
-              .then(buildDefinitions => this.setState({buildDefinitions: buildDefinitions.value}))
-          }
+              .then(buildDefinitions => this.setState({buildDefinitions: buildDefinitions.value, loading: false}))
+    }
     render() {
-        console.log(this.state.buildDefinitions);
+        let buildDefinitionHtml;
+        if (this.state.loading) {
+            buildDefinitionHtml = <div class="text-center"><img alt="Build Definitions" src="../assets/img/build-load-icon.gif"></img></div>
+          } else {
+            buildDefinitionHtml = <span>
+            {this.state.buildDefinitions.map(definition =>
+                <div class="col-sm-3">
+                    <div class="tile-progress tile-green">
+                        <div class="tile-header">
+                            <h3>{definition.definition.name}</h3>
+                            <span>{definition.buildNumber}</span><br />
+                            <span>{definition.id}</span><br />
+                            <span>{definition.result}</span>
+                        </div>
+                        <div class="tile-progressbar">
+                            <span data-fill="65.5%" style={progressStyle}></span>
+                        </div>
+                        <div class="tile-footer">
+                            <h4>
+                                <span class="pct-counter">65.5</span>% increase
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            )}
+            </span>
+          }
         var progressStyle = {width: '30%'};
         return (
             <div>
                 <div class="container">
                     <div class="row">
-                    {this.state.buildDefinitions.map(definition =>
-                        <div class="col-sm-3">
-                            <div class="tile-progress tile-green">
-                                <div class="tile-header">
-                                    <h3>{definition.definition.name}</h3>
-                                    <span>{definition.buildNumber}</span><br />
-                                    <span>{definition.id}</span><br />
-                                    <span>{definition.result}</span>
-                                </div>
-                                <div class="tile-progressbar">
-                                    <span data-fill="65.5%" style={progressStyle}></span>
-                                </div>
-                                <div class="tile-footer">
-                                    <h4>
-                                        <span class="pct-counter">65.5</span>% increase
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                        {buildDefinitionHtml}
                     </div>
                 </div>
             </div>
