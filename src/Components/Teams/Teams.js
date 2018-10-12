@@ -13,7 +13,8 @@ class Teams extends Component {
             loading: false,
             iterationWorkItems: [],
             workItemDetails: [],
-            emptyData: false
+            emptyData: false,
+            teamId: localStorage.getItem('teamId')
           };
           this.getIterationList = this.getIterationList.bind(this);
           this.getWorkItems = this.getWorkItems.bind(this);
@@ -28,12 +29,18 @@ class Teams extends Component {
             headers: header
           }).then(response => response.json())
             .then( teamsInPod => this.setState({teamsInPod: teamsInPod.value}))
+            this.getIterationList('');
       }
 
     getIterationList(e) {
+         
+          if(e != '') {  
+            localStorage.setItem('teamId', e.target.value);
+          }
+
           this.setState({loading: true})
 
-          fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/" + e.target.value + "/_apis/work/teamsettings/iterations", {
+          fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/" + localStorage.getItem('teamId') + "/_apis/work/teamsettings/iterations", {
             method: "GET",
             headers: global.header
           })
@@ -41,9 +48,10 @@ class Teams extends Component {
           .then( iterationList => {
             this.setState({iterationList: iterationList.value, loading: false});
           })
+          
     }
     getWorkItems(e) {
-      fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/" + myConfig.teamId + "/_apis/work/teamsettings/iterations/" + e.target.value + "/workitems", {
+      fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/" + localStorage.getItem('teamId') + "/_apis/work/teamsettings/iterations/" + e.target.value + "/workitems", {
             method: "GET",
             headers: global.header
       }).then(response => response.json())
@@ -112,7 +120,7 @@ class Teams extends Component {
                   <select id="teamsList" onChange={this.getIterationList}>
                         <option key="">Choose team</option>
                         {this.state.teamsInPod.map(team =>
-                          <option key={team.id} value={team.id}>{team.name}</option>
+                          <option key={team.id} value={team.id} selected={this.state.teamId == team.id ? 'selected': ''}>{team.name}</option>
                         )}
                   </select>
               </div>

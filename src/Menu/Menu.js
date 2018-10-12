@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { myConfig } from '../config.js';
+import Groups from '../Components/Groups/Groups';
 
 class Menu extends Component {
-    constructor() {
+    constructor(props) {
         global.header = new Headers();
         global.header.append("Authorization", "Basic " + myConfig.vstsToken);
-        super()
+        if (localStorage.getItem('teamId') == ''){
+            localStorage.setItem('teamId', myConfig.teamId);
+        }
+        super(props);
           this.state = {
-              teamsInPod: []
+              teamsInPod: [],
+              tempStorage: localStorage.getItem('teamId'),
+              teamsMembers: []
             };
+        this.setTeams = this.setTeams.bind(this);
     }
     componentDidMount() {
         let header = new Headers();
@@ -18,8 +25,15 @@ class Menu extends Component {
             method: "GET",
             headers: header
           }).then(response => response.json())
-            .then( teamsInPod => this.setState({teamsInPod: teamsInPod.value}))
-           
+            .then( teamsInPod => {
+                this.setState({teamsInPod: teamsInPod.value})
+            }
+          )
+      }
+      setTeams(e){
+        localStorage.setItem('teamId', e.target.value);
+        window.location.reload();
+        //Groups.prototype.getTeamMembers();
       }
 
     render() {
@@ -34,7 +48,9 @@ class Menu extends Component {
               <div>  
                 <nav className="navbar navbar-default navbar-fixed-top">
                     <div class="brand">
+                    <Link to={'/'} className={last_segment == "" ? "active" : ""}>
                         <a href="index.html"><img src="../assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></img></a>
+                    </Link>
                     </div>
 			        <div className="container-fluid">
                         <div className="navbar-btn">
@@ -47,10 +63,9 @@ class Menu extends Component {
                             </div>
                         </form>
                         <form className="navbar-form navbar-left">
-                            <select className="form-control" onChange={this.getIterationList}>
-                                <option key="">Choose team</option>
+                            <select className="form-control" onChange={this.setTeams}>
                                 {this.state.teamsInPod.map(team =>
-                                <option key={team.id} value={team.id}>{team.name}</option>
+                                <option key={team.id} value={team.id} selected={this.state.tempStorage == team.id ? 'selected': ''}>{team.name}</option>
                                 )}
                             </select>
                         </form>
