@@ -49,7 +49,7 @@ class Menu extends Component {
                 <nav className="navbar navbar-default navbar-fixed-top">
                     <div class="brand">
                     <Link to={'/'} className={last_segment == "" ? "active" : ""}>
-                        <a href="index.html"><img src="../assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></img></a>
+                        <a href="index.html"><img src="../assets/img/logo.png" alt="VSTS-MINI" class="img-responsive logo"></img></a>
                     </Link>
                     </div>
 			        <div className="container-fluid">
