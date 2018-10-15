@@ -49,7 +49,7 @@ class Menu extends Component {
                 <nav className="navbar navbar-default navbar-fixed-top">
                     <div class="brand">
                     <Link to={'/'} className={last_segment == "" ? "active" : ""}>
-                        <a href="index.html"><img src="../assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></img></a>
+                        <a href="index.html"><img src="../assets/img/logo.png" alt="VSTS-MINI" class="img-responsive logo"></img></a>
                     </Link>
                     </div>
 			        <div className="container-fluid">
@@ -143,6 +143,14 @@ class Menu extends Component {
                                         <a>
                                             <i className="lnr lnr-rocket"></i>
                                             <span>Build</span>
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={'/Groups'}  className={last_segment == "Groups" ? "active" : ""}>
+                                        <a>
+                                            <i className="lnr lnr-rocket"></i>
+                                            <span>Groups</span>
                                         </a>
                                     </Link>
                                 </li>
