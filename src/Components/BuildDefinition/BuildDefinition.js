@@ -50,21 +50,38 @@ class BuildDefinition extends Component {
             buildDefinitionHtml = <div class="text-center"><img alt="Build Definitions" src="../assets/img/build-load-icon.gif"></img></div>
           } else {
             buildDefinitionHtml = <span>
+                <div class="col-sm-3">
+                    <div class="tile-progress tile-red">
+                        <div class="tile-header">
+                            <h3>pfs (Demo)</h3>
+                            <span>refs/heads/mast...</span>
+                            <br />
+                                <span>Graham Allwood</span>
+                        </div>
+                        <div class="tile-progressbar">
+                            <span data-fill="65.5%"></span>
+                        </div>
+                        <div class="tile-footer">
+                            <h4>
+                                <span class="pct-counter">Failed</span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
             {this.state.buildDefinitions.map(definition =>
                 <div class="col-sm-3">
                     <div class="tile-progress tile-green">
                         <div class="tile-header">
-                            <h3>{definition.definition.name}</h3>
-                            <span>{definition.buildNumber}</span><br />
-                            <span>{definition.id}</span><br />
-                            <span>{definition.result}</span>
+                            <h3>{(definition.definition.name.length > 15) ? definition.definition.name.substr(0,15) + "..." : definition.definition.name}</h3>
+                                <span>{(definition.sourceBranch.length > 15) ? definition.sourceBranch.substr(0,15) + "..." : definition.sourceBranch}</span><br />
+                                <span>{definition.requestedBy['displayName']}</span>
                         </div>
                         <div class="tile-progressbar">
                             <span data-fill="65.5%" style={progressStyle}></span>
                         </div>
                         <div class="tile-footer">
                             <h4>
-                                <span class="pct-counter">65.5</span>% increase
+                                <span class="pct-counter">{definition.result}</span>
                             </h4>
                         </div>
                     </div>
