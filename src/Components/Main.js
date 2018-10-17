@@ -8,6 +8,7 @@ import Teams from '../Components/Teams/Teams';
 import Trello from '../Components/Trello/Trello';
 import WorkItem from '../Components/WorkItem/WorkItem';
 import BuildDefinition from './BuildDefinition/BuildDefinition';
+import Groups from './Groups/Groups';
 
 class Main extends Component {
   render() {
@@ -27,6 +28,7 @@ class Main extends Component {
                       <Route exact path='/Trello' component={Trello} />
                       <Route exact path='/WorkItem/:id' component={WorkItem} />
                       <Route exact path='/BuildDefinition' component={BuildDefinition} />
+                      <Route exact path='/Groups' component={Groups} />
                     </Switch>
                   </div>
                 </div>
