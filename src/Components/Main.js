@@ -9,6 +9,7 @@ import Trello from '../Components/Trello/Trello';
 import WorkItem from '../Components/WorkItem/WorkItem';
 import BuildDefinition from './BuildDefinition/BuildDefinition';
 import Groups from './Groups/Groups';
+import VelocityMetrics from './VelocityMetrics/VelocityMetrics';
 
 class Main extends Component {
   render() {
@@ -29,6 +30,7 @@ class Main extends Component {
                       <Route exact path='/WorkItem/:id' component={WorkItem} />
                       <Route exact path='/BuildDefinition' component={BuildDefinition} />
                       <Route exact path='/Groups' component={Groups} />
+                      <Route exact path='/VelocityMetrics' component={VelocityMetrics} />
                     </Switch>
                   </div>
                 </div>

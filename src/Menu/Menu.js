@@ -141,7 +141,7 @@ class Menu extends Component {
                                 <li>
                                     <Link to={'/BuildDefinition'}  className={last_segment == "BuildDefinition" ? "active" : ""}>
                                         <a>
-                                            <i className="lnr lnr-rocket"></i>
+                                            <i className="fa fa-random"></i>
                                             <span>Build</span>
                                         </a>
                                     </Link>
@@ -149,8 +149,16 @@ class Menu extends Component {
                                 <li>
                                     <Link to={'/Groups'}  className={last_segment == "Groups" ? "active" : ""}>
                                         <a>
-                                            <i className="lnr lnr-rocket"></i>
+                                            <i className="lnr lnr-user"></i>
                                             <span>Groups</span>
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to={'/VelocityMetrics'}  className={last_segment == "VelocityMetrics" ? "active" : ""}>
+                                        <a>
+                                            <i className="fa fa-line-chart"></i>
+                                            <span>Velocity Metrics</span>
                                         </a>
                                     </Link>
                                 </li>
