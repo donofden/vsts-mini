@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "fusioncharts": "^3.13.2",
     "gatsby-plugin-react-next": "^1.0.11",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-fusioncharts": "^2.0.5",
     "react-html-parser": "^2.0.2",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5"

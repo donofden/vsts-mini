@@ -13,11 +13,11 @@ Team chart - This gives the velocity of the team from last 3 sprints, so it will
 
 Use the docker hub image
 
-`docker pull parithiban/vsts-mini:2018.08.01`
+`docker pull parithiban/vsts-mini`
 
 After the image is built or downloaded run
 
-`docker run -p 49160:3000 parithiban/vsts-mini:2018.08.01`
+`docker run -p 49160:3000 parithiban/vsts-mini`
 
 Then navigate to  http://localhost:49160/
 
