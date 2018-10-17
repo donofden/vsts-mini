@@ -61,7 +61,8 @@ class VelocityMetrics extends React.Component {
           "theme": "zune",
           "width": "100%",
           "height": "100%",
-          "bgColor": "#FFFFFF"
+          "bgColor": "#FFFFFF",
+          "showBorder": "0",
         },
         "data": [
           {
