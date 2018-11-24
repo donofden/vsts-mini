@@ -9,18 +9,6 @@ Team chart - This gives the velocity of the team from last 3 sprints, so it will
 # **How to Run / Install**
 - Run `make` will help you to see the list of commands to get started.
 
-# **Installation via Docker**
-
-Use the docker hub image
-
-`docker pull parithiban/vsts-mini`
-
-After the image is built or downloaded run
-
-`docker run -p 49160:3000 parithiban/vsts-mini`
-
-Then navigate to  http://localhost:49160/
-
 
 # Setting up config
 

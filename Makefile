@@ -73,3 +73,6 @@ ifeq ($(OS),Darwin)
 else
 	@echo "Currently we only support MacOS commands - Please install JQ."
 endif
+
+db-start: ## To start the postgresql application
+	brew services start postgresql
