@@ -76,3 +76,10 @@ endif
 
 db-start: ## To start the postgresql application
 	brew services start postgresql
+
+clean-pg: ## To clean the postgres sql setup
+	brew uninstall --force postgresql
+	rm -rf /usr/local/var/postgres
+
+install-pg: clean-pg ## To install postgres
+	brew install postgres
