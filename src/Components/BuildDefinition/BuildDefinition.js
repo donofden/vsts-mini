@@ -31,7 +31,6 @@ class BuildDefinition extends Component {
                   for (var build of buildDetails.value) {
                     buildIds.push(build.id);
                   }
-                  console.log(buildIds.join(','))
                   this.getBuildDetails(buildIds.join(','));
                 }
             })
@@ -47,41 +46,41 @@ class BuildDefinition extends Component {
     render() {
         let buildDefinitionHtml;
         if (this.state.loading) {
-            buildDefinitionHtml = <div class="text-center"><img alt="Build Definitions" src="../assets/img/build-load-icon.gif"></img></div>
+            buildDefinitionHtml = <div className="text-center"><img alt="Build Definitions" src="../assets/img/build-load-icon.gif"></img></div>
           } else {
             buildDefinitionHtml = <span>
-                <div class="col-sm-3">
-                    <div class="tile-progress tile-red">
-                        <div class="tile-header">
+                <div className="col-sm-3">
+                    <div className="tile-progress tile-red">
+                        <div className="tile-header">
                             <h3>pfs (Demo)</h3>
                             <span>refs/heads/mast...</span>
                             <br />
                                 <span>Graham Allwood</span>
                         </div>
-                        <div class="tile-progressbar">
+                        <div className="tile-progressbar">
                             <span data-fill="65.5%"></span>
                         </div>
-                        <div class="tile-footer">
+                        <div className="tile-footer">
                             <h4>
-                                <span class="pct-counter">Failed</span>
+                                <span className="pct-counter">Failed</span>
                             </h4>
                         </div>
                     </div>
                 </div>
             {this.state.buildDefinitions.map(definition =>
-                <div class="col-sm-3">
-                    <div class="tile-progress tile-green">
-                        <div class="tile-header">
+                <div className="col-sm-3" key={definition.definition.id}>
+                    <div className="tile-progress tile-green">
+                        <div className="tile-header">
                             <h3>{(definition.definition.name.length > 15) ? definition.definition.name.substr(0,15) + "..." : definition.definition.name}</h3>
                                 <span>{(definition.sourceBranch.length > 15) ? definition.sourceBranch.substr(0,15) + "..." : definition.sourceBranch}</span><br />
                                 <span>{definition.requestedBy['displayName']}</span>
                         </div>
-                        <div class="tile-progressbar">
+                        <div className="tile-progressbar">
                             <span data-fill="65.5%" style={progressStyle}></span>
                         </div>
-                        <div class="tile-footer">
+                        <div className="tile-footer">
                             <h4>
-                                <span class="pct-counter">{definition.result}</span>
+                                <span className="pct-counter">{definition.result}</span>
                             </h4>
                         </div>
                     </div>
@@ -92,8 +91,8 @@ class BuildDefinition extends Component {
         var progressStyle = {width: '30%'};
         return (
             <div>
-                <div class="container">
-                    <div class="row">
+                <div className="container">
+                    <div className="row">
                         {buildDefinitionHtml}
                     </div>
                 </div>

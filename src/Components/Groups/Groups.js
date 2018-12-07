@@ -40,32 +40,31 @@ class Groups extends Component {
       return (
          <div>
             <h2>Groups</h2>
-            <section id="team" class="pb-5">
-                <div class="container">
-                    <div class="row">
+            <section id="team" className="pb-5">
+                <div className="container">
+                    <div className="row">
                         {this.state.teamsMembers.map(member =>
 
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                            
-                        <div class="image-flip" key={member.identity['id']} ontouchstart="this.classList.toggle('hover');">
-                            <div class="mainflip">
-                                <div class="frontside">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <p><img class="img-fluid" src={member.identity['imageUrl']+"&size=2"} alt="card image" /></p>
-                                            <h4 class="card-title">{member.identity['displayName']}</h4>
-                                            <p class="card-text">{member.identity['uniqueName']}</p>
-                                            {/* <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> */}
+                        <div className="col-xs-12 col-sm-6 col-md-3" key={member.identity['id']}>
+                        <div className="image-flip" ontouchstart="this.classList.toggle('hover')">
+                            <div className="mainflip">
+                                <div className="frontside">
+                                    <div className="card">
+                                        <div className="card-body text-center">
+                                            <p><img className="img-fluid" src={member.identity['imageUrl']+"&size=2"} alt="card image" /></p>
+                                            <h4 className="card-title">{member.identity['displayName']}</h4>
+                                            <p className="card-text">{member.identity['uniqueName']}</p>
+                                            {/* <a href="#" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a> */}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="backside">
-                                    <div class="card">
-                                    <div class="card-body text-center">
-                                            <p><img class="img-fluid" src={member.identity['imageUrl']+"&size=2"} alt="card image" /></p>
-                                            <h4 class="card-title">{member.identity['displayName']}</h4>
-                                            <p class="card-text">{member.identity['uniqueName']}</p>
-                                            {/* <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> */}
+                                <div className="backside">
+                                    <div className="card">
+                                    <div className="card-body text-center">
+                                            <p><img className="img-fluid" src={member.identity['imageUrl']+"&size=2"} alt="card image" /></p>
+                                            <h4 className="card-title">{member.identity['displayName']}</h4>
+                                            <p className="card-text">{member.identity['uniqueName']}</p>
+                                            {/* <a href="#" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a> */}
                                         </div>
                                     </div>
                                 </div>

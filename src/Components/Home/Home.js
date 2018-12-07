@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
-import { myConfig } from '../../config.js';
 
 class Home extends Component {
-
-    componentDidMount() {
-      // To-Do for dynamic onmouse over the text for flip flop
-    }
     render() {
       return (
         <div>
-          <div class="container-home">
-              <div class="row">
-                  <div class="col-lg-4">
-                      <div class="our-team-main">
-                          <div class="team-front">
-                              <img src="http://placehold.it/110x110/e91e63/fff?text=IS" class="img-fluid" />
+          <div className="container-home">
+              <div className="row">
+                  <div className="col-lg-4">
+                      <div className="our-team-main">
+                          <div className="team-front">
+                              <img src="http://placehold.it/110x110/e91e63/fff?text=IS" className="img-fluid" />
                               <h3>Internal Systems</h3>
                               <p>Tooling POD</p>
                           </div>
 
-                          <div class="team-back">
+                          <div className="team-back">
                               <span>
-                              <table class="table table-bordered">
+                              <table className="table table-bordered">
                                 <thead>
                                     <tr><th>#</th><th>Columns</th><th>Items</th><th>Points</th></tr>
                                 </thead>
@@ -38,16 +33,15 @@ class Home extends Component {
                           </div>
                       </div>
                   </div>
-                  <div class="col-lg-4">
-                      <div class="our-team-main">
-
-                          <div class="team-front">
-                              <img src="http://placehold.it/110x110/336699/fff?text=AX" class="img-fluid" />
+                  <div className="col-lg-4">
+                      <div className="our-team-main">
+                          <div className="team-front">
+                              <img src="http://placehold.it/110x110/336699/fff?text=AX" className="img-fluid" />
                               <h3>AX</h3>
                               <p>Tooling POD</p>
                           </div>
 
-                          <div class="team-back">
+                          <div className="team-back">
                               <span>
                               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
                               natoque penatibus et magnis dis parturient montes,
@@ -58,14 +52,14 @@ class Home extends Component {
 
                       </div>
                   </div>
-                  <div class="col-lg-4">
-                      <div class="our-team-main">
-                          <div class="team-front">
-                              <img src="http://placehold.it/110x110/607d8b/fff?text=CDB" class="img-fluid" />
+                  <div className="col-lg-4">
+                      <div className="our-team-main">
+                          <div className="team-front">
+                              <img src="http://placehold.it/110x110/607d8b/fff?text=CDB" className="img-fluid" />
                               <h3>CDB</h3>
                               <p>Tooling POD</p>
                           </div>
-                          <div class="team-back">
+                          <div className="team-back">
                               <span>
                               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
                               natoque penatibus et magnis dis parturient montes,
@@ -75,14 +69,14 @@ class Home extends Component {
                           </div>
                       </div>
                   </div>
-                  <div class="col-lg-4">
-                      <div class="our-team-main">
-                          <div class="team-front">
-                              <img src="http://placehold.it/110x110/4caf50/fff?text=PFS" class="img-fluid" />
+                  <div className="col-lg-4">
+                      <div className="our-team-main">
+                          <div className="team-front">
+                              <img src="http://placehold.it/110x110/4caf50/fff?text=PFS" className="img-fluid" />
                               <h3>PFS</h3>
                               <p>Tooling POD</p>
                           </div>
-                          <div class="team-back">
+                          <div className="team-back">
                               <span>
                               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
                               natoque penatibus et magnis dis parturient montes,
@@ -92,14 +86,14 @@ class Home extends Component {
                           </div>
                       </div>
                   </div>
-                  <div class="col-lg-4">
-                      <div class="our-team-main">
-                          <div class="team-front">
-                              <img src="http://placehold.it/110x110/9c27b0/fff?text=SDS" class="img-fluid" />
+                  <div className="col-lg-4">
+                      <div className="our-team-main">
+                          <div className="team-front">
+                              <img src="http://placehold.it/110x110/9c27b0/fff?text=SDS" className="img-fluid" />
                               <h3>SDS</h3>
                               <p>Tooling POD</p>
                           </div>
-                          <div class="team-back">
+                          <div className="team-back">
                               <span>
                               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
                               natoque penatibus et magnis dis parturient montes,
@@ -109,14 +103,14 @@ class Home extends Component {
                           </div>
                       </div>
                   </div>
-                  <div class="col-lg-4">
-                      <div class="our-team-main">
-                          <div class="team-front">
-                              <img src="http://placehold.it/110x110/2196f3/fff?text=DM" class="img-fluid" />
+                  <div className="col-lg-4">
+                      <div className="our-team-main">
+                          <div className="team-front">
+                              <img src="http://placehold.it/110x110/2196f3/fff?text=DM" className="img-fluid" />
                               <h3>Data Migration</h3>
                               <p>Tooling POD</p>
                           </div>
-                          <div class="team-back">
+                          <div className="team-back">
                               <span>
                               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
                               natoque penatibus et magnis dis parturient montes,

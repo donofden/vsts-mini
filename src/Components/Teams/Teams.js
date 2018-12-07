@@ -57,10 +57,10 @@ class Teams extends Component {
       }).then(response => response.json())
         .then( iterationWorkItems => {
             var workItemIds = [];
-
-            if (typeof(iterationWorkItems.workItemRelations) === "undefined") {
+            if (iterationWorkItems.hasOwnProperty('workItemRelations') && iterationWorkItems.workItemRelations.length == 0) {
               this.setState({emptyData: true});
-            } else {
+            }
+            else {
               this.setState({emptyData: false});
               for (var workItem of iterationWorkItems.workItemRelations) {
                 workItemIds.push(workItem.target.id);
@@ -96,18 +96,18 @@ class Teams extends Component {
         workItemDetails = "Oops!! No data found";
       } else {
         workItemDetails = <div> {this.state.workItemDetails.map(workItemInfo =>
-              <li class="list-group-item d-flex justify-content-between align-items-center" key={workItemInfo.id}>
-              <span type="button" class="btn-xs btn-circle text-success"> {workItemInfo.id} </span>
-              {(workItemInfo.fields['System.WorkItemType'] == 'User Story' ? (<span class="lnr lnr-book text-primary"></span>) : (''))}
-              {(workItemInfo.fields['System.WorkItemType'] == 'Bug' ? (<span class="lnr lnr-bug text-danger"></span>) : (''))}
-              {(workItemInfo.fields['System.WorkItemType'] == 'Task' ? (<span class="lnr lnr-file-add text-warning"></span>) : (''))}
+              <li className="list-group-item d-flex justify-content-between align-items-center" key={workItemInfo.id}>
+              <span type="button" className="btn-xs btn-circle text-success"> {workItemInfo.id} </span>
+              {(workItemInfo.fields['System.WorkItemType'] == 'User Story' ? (<span className="lnr lnr-book text-primary"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] == 'Bug' ? (<span className="lnr lnr-bug text-danger"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] == 'Task' ? (<span className="lnr lnr-file-add text-warning"></span>) : (''))}
 
                 <Link to={'/WorkItem/'+ workItemInfo.id} className="whiteText"> {workItemInfo.fields['System.Title']}</Link>
 
-                <span class="badge badge-info">{workItemInfo.fields['System.BoardColumn']}</span>
+                <span className="badge badge-info">{workItemInfo.fields['System.BoardColumn']}</span>
 
                 {(workItemInfo.fields['Microsoft.VSTS.Scheduling.StoryPoints'] > 0 ? (
-                  <span class="badge badge-warning">{workItemInfo.fields['Microsoft.VSTS.Scheduling.StoryPoints']} sp</span>
+                  <span className="badge badge-warning">{workItemInfo.fields['Microsoft.VSTS.Scheduling.StoryPoints']} sp</span>
                 ) : (''))}
               </li>
         )}</div>
@@ -120,7 +120,7 @@ class Teams extends Component {
                   <select id="teamsList" onChange={this.getIterationList}>
                         <option key="">Choose team</option>
                         {this.state.teamsInPod.map(team =>
-                          <option key={team.id} value={team.id} selected={this.state.teamId == team.id ? 'selected': ''}>{team.name}</option>
+                          <option key={team.id} value={team.id} selected={this.state.teamId == team.id }>{team.name}</option>
                         )}
                   </select>
               </div>
@@ -130,7 +130,7 @@ class Teams extends Component {
               </div>
             </div>
             <hr></hr>
-            <ul class="list-group">
+            <ul className="list-group">
               {workItemDetails}
             </ul>
                   

@@ -21,16 +21,16 @@ class Main extends Component {
                   <div className="panel panel-headline">
                     <div className="panel-body">
                     <Switch>
-                      <Route exact path='/' component={Home} />
-                      <Route exact path='/ReleasePlan' component={ReleasePlan} />
-                      <Route exact path='/TeamChart' component={TeamChart} />
-                      <Route exact path='/Iterations' component={Iterations} />
-                      <Route exact path='/Teams' component={Teams} />
-                      <Route exact path='/Trello' component={Trello} />
-                      <Route exact path='/WorkItem/:id' component={WorkItem} />
-                      <Route exact path='/BuildDefinition' component={BuildDefinition} />
-                      <Route exact path='/Groups' component={Groups} />
-                      <Route exact path='/VelocityMetrics' component={VelocityMetrics} />
+                      <Route exact path='/' component={Home} key="Home"/>
+                      <Route exact path='/ReleasePlan' component={ReleasePlan} key="ReleasePlan" />
+                      <Route exact path='/TeamChart' component={TeamChart} key="TeamChart" />
+                      <Route exact path='/Iterations' component={Iterations} key="Iterations" />
+                      <Route exact path='/Teams' component={Teams} key="Teams" />
+                      <Route exact path='/Trello' component={Trello} key="Trello" />
+                      <Route exact path='/WorkItem/:id' component={WorkItem} key="WorkItemId" />
+                      <Route exact path='/BuildDefinition' component={BuildDefinition} key="BuildDefinition" />
+                      <Route exact path='/Groups' component={Groups} key="Groups" />
+                      <Route exact path='/VelocityMetrics' component={VelocityMetrics} key="VelocityMetrics"/>
                     </Switch>
                   </div>
                 </div>

@@ -20,14 +20,44 @@ class VelocityMetrics extends React.Component {
       stuck: [],
       done:[],
       dataSource: {},
+      emptyData: false,
+      currentIteration:'',
   };
   }
   componentDidMount() {
-    let header = new Headers();
-    header.append("Authorization", "Basic " + myConfig.vstsToken);
-    fetch("https://emisgroup.visualstudio.com/501cfc52-3465-4c0f-854d-41d88ecde81f/_apis/wit/workitems?ids=2061,2072,1740,1720,1907,1769,1790,1761,1771,1320,1972,180,1965,1867,1895,1388", {
+    fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/" + localStorage.getItem('teamId') + "/_apis/work/teamsettings/iterations/?$timeframe=current&api-version=4.1", {
+            method: "GET",
+            headers: global.header
+      }).then(response => response.json())
+        .then(currentIteration => {
+          this.setState({currentIteration: currentIteration.value[0]['id']})
+          this.getCurrentIterationWorkItems();
+        })
+  }
+  getCurrentIterationWorkItems() {
+    fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/" + localStorage.getItem('teamId') + "/_apis/work/teamsettings/iterations/" + this.state.currentIteration + "/workitems", {
+            method: "GET",
+            headers: global.header
+      }).then(response => response.json())
+        .then( iterationWorkItems => {
+            var workItemIds = [];
+
+            if (typeof(iterationWorkItems.workItemRelations) === "undefined") {
+              this.setState({emptyData: true});
+            } else {
+              this.setState({emptyData: false});
+              for (var workItem of iterationWorkItems.workItemRelations) {
+                workItemIds.push(workItem.target.id);
+              }
+              console.log(workItemIds.join(','))
+              this.getWorkItemFullDetails(workItemIds.join(','));
+            }
+        })
+  }
+  getWorkItemFullDetails(workItemIds) {
+    fetch("https://" + myConfig.accountName + ".visualstudio.com/" + myConfig.projectId + "/_apis/wit/workitems?ids=" + workItemIds, {
       method: "GET",
-      headers: header
+      headers: global.header
     }).then(response => response.json())
       .then(workItems => {
         workItems.value.forEach(element => {
@@ -88,7 +118,8 @@ class VelocityMetrics extends React.Component {
         ]}
       });
    });
-  } 
+  }
+
   render() {
       return (
             <div className="container">

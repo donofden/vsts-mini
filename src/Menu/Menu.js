@@ -47,9 +47,9 @@ class Menu extends Component {
           <menu>
               <div>  
                 <nav className="navbar navbar-default navbar-fixed-top">
-                    <div class="brand">
+                    <div className="brand">
                     <Link to={'/'} className={last_segment == "" ? "active" : ""}>
-                        <a href="index.html"><img src="../assets/img/logo.png" alt="VSTS-MINI" class="img-responsive logo"></img></a>
+                        <img src="../assets/img/logo.png" alt="VSTS-MINI" className="img-responsive logo"></img>
                     </Link>
                     </div>
 			        <div className="container-fluid">
@@ -108,58 +108,44 @@ class Menu extends Component {
                             <ul className="nav">
                                 <li>
                                     <Link to={'/'} className={last_segment == "" ? "active" : ""}>
-                                        <a>
                                             <i className="lnr lnr-home"></i> 
                                             <span>Home</span>
-                                        </a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to={'/TeamChart'} className={last_segment == "TeamChart" ? "active" : ""}>
-                                        <a>
                                             <i className="lnr lnr-chart-bars"></i>
                                             <span>Team Chart</span>
-                                        </a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to={'/Teams'} className={last_segment == "Teams" ? "active" : ""}>
-                                        <a>
                                             <i className="lnr lnr-dice"></i>
                                             <span>Board</span>
-                                        </a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to={'/ReleasePlan'}  className={last_segment == "ReleasePlan" ? "active" : ""}>
-                                        <a>
                                             <i className="lnr lnr-rocket"></i>
                                             <span>Plan</span>
-                                        </a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to={'/BuildDefinition'}  className={last_segment == "BuildDefinition" ? "active" : ""}>
-                                        <a>
                                             <i className="fa fa-random"></i>
                                             <span>Build</span>
-                                        </a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to={'/Groups'}  className={last_segment == "Groups" ? "active" : ""}>
-                                        <a>
                                             <i className="lnr lnr-user"></i>
                                             <span>Groups</span>
-                                        </a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to={'/VelocityMetrics'}  className={last_segment == "VelocityMetrics" ? "active" : ""}>
-                                        <a>
                                             <i className="fa fa-line-chart"></i>
                                             <span>Velocity Metrics</span>
-                                        </a>
                                     </Link>
                                 </li>
                             </ul>
@@ -167,19 +153,19 @@ class Menu extends Component {
                     </div>
                 </div>
 
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">App Settings</h4>
+                <div id="myModal" className="modal fade" role="dialog">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <button type="button" className="close" data-dismiss="modal">&times;</button>
+                            <h4 className="modal-title">App Settings</h4>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <p>Some text in the modal.</p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                         </div>
                     </div>
