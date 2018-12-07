@@ -66,6 +66,8 @@ install: ## Install the application
 	npm install
 # Install react router package
 	npm install --save react-router-dom
+# Install Flask web application framework
+	pip install -U Flask
 # Install jq
 ifeq ($(OS),Darwin)
 	# Run MacOS commands
@@ -83,3 +85,6 @@ clean-pg: ## To clean the postgres sql setup
 
 install-pg: clean-pg ## To install postgres
 	brew install postgres
+
+start-api: ## to start the application 
+	FLASK_APP=python/main.py flask run
