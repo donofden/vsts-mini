@@ -80,11 +80,23 @@ db-start: ## To start the postgresql application
 	brew services start postgresql
 
 clean-pg: ## To clean the postgres sql setup
+	brew uninstall --force postgis
 	brew uninstall --force postgresql
 	rm -rf /usr/local/var/postgres
 
-install-pg: clean-pg ## To install postgres
+install-pg: clean-pg
 	brew install postgres
+	ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+
+wait%:
+	sh wait.sh $*
+
+setup-pg: install-pg wait30 wait30 wait30 ## To install postgres
+	echo "DONE"
+	createuser -s postgres  && echo "success!" || echo "failure!"
+	psql -U postgres
+	CREATE DATABASE testdb1;
 
 start-api: ## To start the application
 	FLASK_APP=python/main.py flask run
