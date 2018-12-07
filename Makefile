@@ -86,5 +86,12 @@ clean-pg: ## To clean the postgres sql setup
 install-pg: clean-pg ## To install postgres
 	brew install postgres
 
-start-api: ## to start the application 
+start-api: ## To start the application
 	FLASK_APP=python/main.py flask run
+
+kill-flask:## To Kill Flask
+	@echo
+	@echo "_HOW To KILL_"
+	@echo "Run 'ps -fA | grep python' "
+	@echo "Find Python Flask run command"
+	@echo "kill  PROCESSID"
