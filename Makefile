@@ -80,23 +80,43 @@ db-start: ## To start the postgresql application
 	brew services start postgresql
 
 clean-pg: ## To clean the postgres sql setup
+	@echo
+	@echo "Cleaning Postgres Setup files."
+	@echo
 	brew uninstall --force postgis
 	brew uninstall --force postgresql
 	rm -rf /usr/local/var/postgres
+	@echo "Done.!"
+	@echo
 
 install-pg: clean-pg
+	@echo
+	@echo "Installing Postgres!!"
+	@echo
 	brew install postgres
 	ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
 wait%:
+	@echo
+	@echo "A wait script was planted to overcome user creation errors.!"
+	@echo "(\_/)"
+	@echo "(o.o)"
+	@echo "(___)0"
 	sh wait.sh $*
 
-setup-pg: install-pg wait30 wait30 wait30 ## To install postgres
-	echo "DONE"
-	createuser -s postgres  && echo "success!" || echo "failure!"
+setup-pg: install-pg wait60 ## To install postgres
+	echo "DONE! Waiting!!"
+	@echo
+	echo "Creating User..."
+	@echo
+	createuser -s postgres  && echo "Success! - User 'postgres' created!" || echo "failure! - Cannot able to create 'postgres' user."
+	createdb vsts_mini  && echo "success! - Database user! " || echo "failure! - Database Not created"
+	echo "Importing Sample data..."
+	@echo
+	psql vsts_mini < python/seed_data/team_boards.sql
+	echo "DONE!"
 	psql -U postgres
-	CREATE DATABASE testdb1;
 
 start-api: ## To start the application
 	FLASK_APP=python/main.py flask run
