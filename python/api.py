@@ -11,10 +11,10 @@ from config import dbconfig
 # Log the activities
 logname ='log/api-' + time.strftime("%Y-%m-%d") +'.log'
 logging.basicConfig(filename=logname,
-                            filemode='a',
-                            format='%(asctime)s, %(name)s %(levelname)s %(message)s',
-                            datefmt='%m:%d:%Y %I:%M:%S %p',
-                            level=logging.DEBUG)
+                    filemode='a',
+                    format='%(asctime)s, %(name)s %(levelname)s %(message)s',
+                    datefmt='%m:%d:%Y %I:%M:%S %p',
+                    level=logging.DEBUG)
 logging.info('Started')
 
 def callApi():
