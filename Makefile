@@ -114,7 +114,7 @@ setup-pg: install-pg wait60 ## To install postgres
 	createdb vsts_mini  && echo "success! - Database user! " || echo "failure! - Database Not created"
 	echo "Importing Sample data..."
 	@echo
-	psql vsts_mini < python/seed_data/team_boards.sql
+	psql vsts_mini < python/seed_data/teams.sql
 	echo "DONE!"
 	psql -U postgres
 
