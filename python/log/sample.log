@@ -1,0 +1,5 @@
+Logs file will be stored inside this folder.
+The log files are generated as per the following formate.
+Python File name + Current Date.log 
+EX:
+fetchTeams-2018-12-11.log
