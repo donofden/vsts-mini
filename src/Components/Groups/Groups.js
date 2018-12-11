@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { myConfig } from '../../config.js';
-import { Link } from 'react-router-dom';
 
 class Groups extends Component {
     constructor(props){
@@ -22,12 +21,8 @@ class Groups extends Component {
         this.getTeamMembers();
       }
       getTeamMembers() {
-        var self = this;
         let header = new Headers();
-        let result;
         header.append("Authorization", "Basic " + myConfig.vstsToken);
-        // https://dev.azure.com/{organization}/_apis/projects/{projectId}/teams/{teamId}/members?api-version=4.1
-        console.log("https://" + myConfig.rootUrl + "/"+ myConfig.accountName+"/_apis/projects/"+ myConfig.projectId +"/teams/"+ localStorage.getItem('teamId') +"/members?api-version=4.1");
           fetch("https://" + myConfig.rootUrl + "/"+ myConfig.accountName+"/_apis/projects/"+ myConfig.projectId +"/teams/"+ localStorage.getItem('teamId') +"/members?api-version=4.1", {
             method: "GET",
             headers: header
@@ -51,7 +46,7 @@ class Groups extends Component {
                                 <div className="frontside">
                                     <div className="card">
                                         <div className="card-body text-center">
-                                            <p><img className="img-fluid" src={member.identity['imageUrl']+"&size=2"} alt="card image" /></p>
+                                            <p><img className="img-fluid" src={member.identity['imageUrl']+"&size=2"} alt="Member Identity" /></p>
                                             <h4 className="card-title">{member.identity['displayName']}</h4>
                                             <p className="card-text">{member.identity['uniqueName']}</p>
                                             {/* <a href="#" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a> */}
@@ -61,7 +56,7 @@ class Groups extends Component {
                                 <div className="backside">
                                     <div className="card">
                                     <div className="card-body text-center">
-                                            <p><img className="img-fluid" src={member.identity['imageUrl']+"&size=2"} alt="card image" /></p>
+                                            <p><img className="img-fluid" src={member.identity['imageUrl']+"&size=2"} alt="Member Identity" /></p>
                                             <h4 className="card-title">{member.identity['displayName']}</h4>
                                             <p className="card-text">{member.identity['uniqueName']}</p>
                                             {/* <a href="#" className="btn btn-primary btn-sm"><i className="fa fa-plus"></i></a> */}

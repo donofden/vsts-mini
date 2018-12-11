@@ -34,7 +34,7 @@ class Teams extends Component {
 
     getIterationList(e) {
          
-          if(e != '') {  
+          if(e !== '') {
             localStorage.setItem('teamId', e.target.value);
           }
 
@@ -57,7 +57,7 @@ class Teams extends Component {
       }).then(response => response.json())
         .then( iterationWorkItems => {
             var workItemIds = [];
-            if (iterationWorkItems.hasOwnProperty('workItemRelations') && iterationWorkItems.workItemRelations.length == 0) {
+            if (iterationWorkItems.hasOwnProperty('workItemRelations') && iterationWorkItems.workItemRelations.length === 0) {
               this.setState({emptyData: true});
             }
             else {
@@ -98,9 +98,9 @@ class Teams extends Component {
         workItemDetails = <div> {this.state.workItemDetails.map(workItemInfo =>
               <li className="list-group-item d-flex justify-content-between align-items-center" key={workItemInfo.id}>
               <span type="button" className="btn-xs btn-circle text-success"> {workItemInfo.id} </span>
-              {(workItemInfo.fields['System.WorkItemType'] == 'User Story' ? (<span className="lnr lnr-book text-primary"></span>) : (''))}
-              {(workItemInfo.fields['System.WorkItemType'] == 'Bug' ? (<span className="lnr lnr-bug text-danger"></span>) : (''))}
-              {(workItemInfo.fields['System.WorkItemType'] == 'Task' ? (<span className="lnr lnr-file-add text-warning"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] === 'User Story' ? (<span className="lnr lnr-book text-primary"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] === 'Bug' ? (<span className="lnr lnr-bug text-danger"></span>) : (''))}
+              {(workItemInfo.fields['System.WorkItemType'] === 'Task' ? (<span className="lnr lnr-file-add text-warning"></span>) : (''))}
 
                 <Link to={'/WorkItem/'+ workItemInfo.id} className="whiteText"> {workItemInfo.fields['System.Title']}</Link>
 
@@ -120,7 +120,7 @@ class Teams extends Component {
                   <select id="teamsList" onChange={this.getIterationList}>
                         <option key="">Choose team</option>
                         {this.state.teamsInPod.map(team =>
-                          <option key={team.id} value={team.id} selected={this.state.teamId == team.id }>{team.name}</option>
+                          <option key={team.id} value={team.id} selected={this.state.teamId === team.id }>{team.name}</option>
                         )}
                   </select>
               </div>

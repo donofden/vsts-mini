@@ -74,13 +74,13 @@ class WorkItem extends Component {
                                   this.state.workItemComments.map(comments =>
                                   <li>
                                       <img src={comments.revisedBy['imageUrl']} alt="Avatar" className="avatar img-circle activity-icon"></img>
-                                      <p>Commented by <a href="#">{comments.revisedBy['displayName']}</a> <span className="timestamp">2 minutes ago</span></p>
+                                      <p>Commented by <a href="">{comments.revisedBy['displayName']}</a> <span className="timestamp">2 minutes ago</span></p>
                                       <p key={comments.revision}>{ReactHtmlParser(comments.text)}</p>
                                   </li>
                                   ) : ""
                               }
                               </ul>
-                              <div className="margin-top-30 text-center"><a href="#" className="btn btn-default">See all activity</a></div>
+                              <div className="margin-top-30 text-center"><a href="" className="btn btn-default">See all activity</a></div>
                           </div>
                           <div className="tab-pane fade" id="tab-bottom-left2">
                               <div className="table-responsive">

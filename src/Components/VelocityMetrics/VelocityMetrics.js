@@ -30,7 +30,10 @@ class VelocityMetrics extends React.Component {
             headers: global.header
       }).then(response => response.json())
         .then(currentIteration => {
-          this.setState({currentIteration: currentIteration.value[0]['id']})
+          //Since the current sprint doesn't have any work items manually I used the past sprint id for data visualisation
+          this.setState({currentIteration: "c5575217-e6a4-4822-b819-fb1136ae3b85"})
+
+          //this.setState({currentIteration: currentIteration.value[0]['id']})
           this.getCurrentIterationWorkItems();
         })
   }
@@ -41,16 +44,14 @@ class VelocityMetrics extends React.Component {
       }).then(response => response.json())
         .then( iterationWorkItems => {
             var workItemIds = [];
-
-            if (typeof(iterationWorkItems.workItemRelations) === "undefined") {
-              this.setState({emptyData: true});
-            } else {
+            if (iterationWorkItems.hasOwnProperty("workItemRelations") && iterationWorkItems.workItemRelations.length > 0) {
               this.setState({emptyData: false});
-              for (var workItem of iterationWorkItems.workItemRelations) {
-                workItemIds.push(workItem.target.id);
-              }
-              console.log(workItemIds.join(','))
+                for (var workItem of iterationWorkItems.workItemRelations) {
+                  workItemIds.push(workItem.target.id);
+                }
               this.getWorkItemFullDetails(workItemIds.join(','));
+            } else {
+              this.setState({emptyData: true});
             }
         })
   }
@@ -74,6 +75,7 @@ class VelocityMetrics extends React.Component {
             case "Closed":
               this.state.done.push(element)
               break;
+            default:
           }
       });
       let totalItemsInBacklog = this.state.backlog.length;

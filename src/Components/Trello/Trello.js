@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { myConfig } from '../../config.js';
 import './Trello.css';
 
 class Trello extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { myConfig } from '../../config.js';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Iterations extends Component {
   constructor(){
@@ -41,7 +41,6 @@ class Iterations extends Component {
         })
     }
     render() {
-      let workItemURL = 'https://emisgroup.visualstudio.com/emishealth/_workitems/edit/'
       return (
          <div>
             <div> 

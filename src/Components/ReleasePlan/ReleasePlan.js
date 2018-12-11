@@ -57,7 +57,7 @@ class ReleasePlan extends Component {
       renderPlan() {
         let release = [];
         let i = 0;
-        let calculationLogic = this.state.planData.map(function(plan) {
+         this.state.planData.map(function(plan) {
           var givenTime = Date.parse(plan.date);
           var currentTime = Date.parse(new Date());
     
@@ -75,12 +75,13 @@ class ReleasePlan extends Component {
                 <td>{plan.date}</td>
                 <td><a style={{backgroundColor: plan.color}}>{plan.color}{plan.color}</a></td>
               </tr>
+            } else {
+              return '';
             }
         });
         let newData  = release.slice(0, 1).map(function(plan) {
           return plan;
         });
-        this.countDown;
         return newData;
       }
     
@@ -134,7 +135,7 @@ class ReleasePlan extends Component {
       </div>
     } else {
         releaseContent = <div>
-          <div class="container text-center">
+          <div className="container text-center">
               <h3 className="text-muted text-center">VSTS Delivery Timeline View</h3>
               <h2 className="text-success text-center">Development Tooling and Engineering POD</h2>
               <hr></hr>
@@ -146,50 +147,44 @@ class ReleasePlan extends Component {
         </div>
         <br></br>
         {this.startTimer()}
-        <div class="awards">
-            <div class="row">
-
-            <div class="col-md-3 col-sm-6">
-            </div>
-
-            <div class="col-md-6 col-sm-6">
-              <div class="col-md-3 col-sm-6 count-down">
-                <div class="award-item">
-                  <div class="">
+        <div className="awards">
+            <div className="row">
+            <div className="col-md-3 col-sm-6"></div>
+            <div className="col-md-6 col-sm-6">
+              <div className="col-md-3 col-sm-6 count-down">
+                <div className="award-item">
+                  <div className="">
                     <h1> {this.state.time.d}</h1>
                   </div>
                   <span>Days</span>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6 count-down">
-                <div class="award-item">
-                  <div class="">
+              <div className="col-md-3 col-sm-6 count-down">
+                <div className="award-item">
+                  <div className="">
                   <h1> {this.state.time.h}</h1>
                   </div>
                   <span>Hours</span>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6 count-down">
-                <div class="award-item">
-                  <div class="">
+              <div className="col-md-3 col-sm-6 count-down">
+                <div className="award-item">
+                  <div className="">
                   <h1> {this.state.time.m}</h1>
                   </div>
                   <span>Minutes</span>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6 count-down">
-                <div class="award-item">
-                  <div class="">
+              <div className="col-md-3 col-sm-6 count-down">
+                <div className="award-item">
+                  <div className="">
                   <h1> {this.state.time.s}</h1>
                   </div>
                   <span>Seconds</span>
                 </div>
               </div>
             </div>
-
-            <div class="col-md-3 col-sm-6">
-            </div>
-
+            <div className="col-md-3 col-sm-6"></div>
             </div>
           </div>
       </div>

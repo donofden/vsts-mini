@@ -9,7 +9,7 @@ class Home extends Component {
                   <div className="col-lg-4">
                       <div className="our-team-main">
                           <div className="team-front">
-                              <img src="http://placehold.it/110x110/e91e63/fff?text=IS" className="img-fluid" />
+                              <img src="http://placehold.it/110x110/e91e63/fff?text=IS" className="img-fluid" alt="Internal Systems"/>
                               <h3>Internal Systems</h3>
                               <p>Tooling POD</p>
                           </div>
@@ -36,7 +36,7 @@ class Home extends Component {
                   <div className="col-lg-4">
                       <div className="our-team-main">
                           <div className="team-front">
-                              <img src="http://placehold.it/110x110/336699/fff?text=AX" className="img-fluid" />
+                              <img src="http://placehold.it/110x110/336699/fff?text=AX" className="img-fluid" alt="AX"/>
                               <h3>AX</h3>
                               <p>Tooling POD</p>
                           </div>
@@ -55,7 +55,7 @@ class Home extends Component {
                   <div className="col-lg-4">
                       <div className="our-team-main">
                           <div className="team-front">
-                              <img src="http://placehold.it/110x110/607d8b/fff?text=CDB" className="img-fluid" />
+                              <img src="http://placehold.it/110x110/607d8b/fff?text=CDB" className="img-fluid" alt="CDB"/>
                               <h3>CDB</h3>
                               <p>Tooling POD</p>
                           </div>
@@ -72,7 +72,7 @@ class Home extends Component {
                   <div className="col-lg-4">
                       <div className="our-team-main">
                           <div className="team-front">
-                              <img src="http://placehold.it/110x110/4caf50/fff?text=PFS" className="img-fluid" />
+                              <img src="http://placehold.it/110x110/4caf50/fff?text=PFS" className="img-fluid" alt="PFS"/>
                               <h3>PFS</h3>
                               <p>Tooling POD</p>
                           </div>
@@ -89,7 +89,7 @@ class Home extends Component {
                   <div className="col-lg-4">
                       <div className="our-team-main">
                           <div className="team-front">
-                              <img src="http://placehold.it/110x110/9c27b0/fff?text=SDS" className="img-fluid" />
+                              <img src="http://placehold.it/110x110/9c27b0/fff?text=SDS" className="img-fluid" alt="SDS"/>
                               <h3>SDS</h3>
                               <p>Tooling POD</p>
                           </div>
@@ -106,7 +106,7 @@ class Home extends Component {
                   <div className="col-lg-4">
                       <div className="our-team-main">
                           <div className="team-front">
-                              <img src="http://placehold.it/110x110/2196f3/fff?text=DM" className="img-fluid" />
+                              <img src="http://placehold.it/110x110/2196f3/fff?text=DM" className="img-fluid" alt="Data Migration"/>
                               <h3>Data Migration</h3>
                               <p>Tooling POD</p>
                           </div>
