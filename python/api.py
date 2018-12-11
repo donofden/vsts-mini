@@ -3,8 +3,19 @@
 import requests
 import base64
 import psycopg2
+import logging
+import time
 from config import config
 from config import dbconfig
+
+# Log the activities
+logname ='log/api-' + time.strftime("%Y-%m-%d") +'.log'
+logging.basicConfig(filename=logname,
+                            filemode='a',
+                            format='%(asctime)s, %(name)s %(levelname)s %(message)s',
+                            datefmt='%m:%d:%Y %I:%M:%S %p',
+                            level=logging.DEBUG)
+logging.info('Started')
 
 def callApi():
 
@@ -70,6 +81,11 @@ def get_team(team_id):
 
 json_object = callApi()
 print(json_object)
+
+logging.warning('Watch out!')
+logging.debug('This message should go to the log file')
+logging.warning('%s before you %s', 'Look', 'leap!')
+
 if json_object['value'] == []:
     print('No Data!')
 else:
@@ -83,3 +99,5 @@ else:
             print('Team projectName:' + rows['projectName'])
             print('Team projectId:' + rows['projectId'])
             print('Team description:' + rows['description'])
+
+logging.info('Finished')
