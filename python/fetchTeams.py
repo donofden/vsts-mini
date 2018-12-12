@@ -54,32 +54,6 @@ def callApi():
         logging.debug('API Request Failure!')
         return "Failure"
 
-def insert_team(teamId, name, description, projectName,projectId):
-    conn = None
-    try:
-        params = dbconfig()
-        conn = psycopg2.connect(**params)
-        cur = conn.cursor()
-
-        sql = """ INSERT INTO teams(teamId,name,description,projectName,projectId)
-             VALUES(%s, %s, %s, %s, %s) RETURNING id;"""
-        logging.info('Trying to Insert - Team ID: '+teamId+' Name: '+name)
-        cur.execute(sql, ([teamId,name,description,projectName,projectId]))
-        # get the generated id back
-        recordId = cur.fetchone()[0]
-        # commit the changes to the database
-        conn.commit()
-        # close communication with the database
-        cur.close()
-        logging.info('Succesfully Inserted.')
-        return recordId
-    except (Exception, psycopg2.DatabaseError) as error:
-        logging.debug(error)
-        print(error)
-    finally:
-        if conn is not None:
-            conn.close()
-
 logging.info('Fetching Teams from ADO!')
 json_object = callApi()
 logging.info('Converted the response to JSON.')
@@ -89,9 +63,16 @@ if json_object['value'] == []:
 else:
     logging.info('Looping through received DATA.')
     for rows in json_object['value']:
-        if db.check_record_available(rows['id'], 'teams','teamid','id','id',1) == 0:
-            print('Inserting Team'+ rows['name'])
-            insert_team(rows['id'], rows['name'], rows['description'], rows['projectName'], rows['projectId'])
+        if db.check_record_available(rows['id'], 'teams','team_id','id','id',1) == 0:
+            print('Inserting Team: '+ rows['name'])
+            insert = {
+            'team_id': rows['id'],
+            'name': rows['name'],
+            'description':rows['description'],
+            'project_name': rows['projectName'],
+            'project_id': rows['projectId']
+            }
+            db.insert_record('teams', insert)
         else:
             print('Team availabe in DB: '+ rows['name'])
             logging.info('Team availabe in DB - Team ID: '+ rows['id'] +' Name: '+ rows['name'])

@@ -46,7 +46,7 @@ def check_record_available( recordId,
             returnDetails = cur.fetchone()
         else:
             # To return Record count
-            returnDetails = str(cur.rowcount)
+            returnDetails = cur.rowcount
             logging.info('Record Count: ' + str(cur.rowcount))
  
         cur.close()
@@ -57,5 +57,39 @@ def check_record_available( recordId,
         if conn is not None:
             conn.close()
 
-#returnValue = check_record_available('e3538f0e-9d35-4737-a85d-3441a434677f', 'teams','teamid','id,name,teamid')
-#print(returnValue)
+def insert_record(tableName,insertData):
+    conn = None
+    try:
+        params = dbconfig()
+        conn = psycopg2.connect(**params)
+        cur = conn.cursor()
+
+        # Declare the List
+        column = []
+        columnValue = []
+        for key, value in insertData.items():
+            column.append(key)
+            columnValue.append(value)
+        # Join the columns and Values
+        insertColumn =  ','.join(map(str, column)) 
+        insertcolumnValue = ", ".join("'{0}'".format(values) for values in columnValue)
+
+
+        sql = """ INSERT INTO teams("""+ insertColumn +""")
+             VALUES("""+ insertcolumnValue +""") RETURNING id;"""
+        logging.info('Inserting: '+sql)
+        cur.execute(sql)
+        # get the generated id back
+        recordId = cur.fetchone()[0]
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+        logging.info('Succesfully Inserted.')
+        return recordId
+    except (Exception, psycopg2.DatabaseError) as error:
+        logging.debug(error)
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
