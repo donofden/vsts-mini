@@ -3,6 +3,7 @@
 import psycopg2
 import time
 import logging
+import json
 from config import config
 from config import dbconfig
 
@@ -17,7 +18,7 @@ logging.basicConfig(filename=logname,
 def check_record_available( recordId,
                             tableName,
                             whereField = 'id',
-                            selectFields = 'id,createddate',
+                            selectFields = 'id,created_date',
                             orderBy = 'id',
                             retrunValue = 0):
     """This function checks for record in the given table as per parameters"""
@@ -89,6 +90,46 @@ def insert_record(tableName,insertData):
         return recordId
     except (Exception, psycopg2.DatabaseError) as error:
         logging.debug(error)
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            conn.close()
+
+def select_all_records( tableName,
+                        selectFields = 'id,created_date',
+                        orderBy = 'id'):
+    """ query parts from the given table """
+    """This function checks for record in the given table as per parameters"""
+    """ recordId        : The record ID value to search"""
+    """ tableName       : The table to search"""
+    """ selectFields    : Select columns to retrun"""
+    """ orderBy         : Order by record after select"""
+    
+    conn = None
+    try:
+        # Connect DB
+        params = dbconfig()
+        conn = psycopg2.connect(**params)
+        cur = conn.cursor()
+
+        # Form the SQL based on the given paremeters
+        sql = """ SELECT """+ selectFields +""" FROM """+ tableName +"""
+                WHERE deleted = '0' ORDER BY """+ orderBy
+        logging.info('check_record_available: ' + sql)
+        cur.execute(sql)
+        result = cur.fetchall()
+
+        #split the columns in to list
+        column = selectFields.split(",")
+        # prepare the result to convert in to JSON with key value pair
+        items = [ dict(zip(column, row)) for row in result]
+        jsonData = json.dumps(items, indent=4)
+        
+        logging.info('Record Count: ' + str(cur.rowcount))
+        cur.close()
+        return jsonData
+    except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
         if conn is not None:
