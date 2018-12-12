@@ -5,17 +5,17 @@ import base64
 import psycopg2
 import logging
 import time
+import databaseOperations as db
 from config import config
 from config import dbconfig
 
 # Log the activities
-logname ='log/fetchTeams-' + time.strftime("%Y-%m-%d") +'.log'
+logname ='log/log-' + time.strftime("%Y-%m-%d") +'.log'
 logging.basicConfig(filename=logname,
                     filemode='a',
                     format='%(asctime)s, %(name)s %(levelname)s %(message)s',
                     datefmt='%m:%d:%Y %I:%M:%S %p',
                     level=logging.DEBUG)
-logging.info('Started')
 
 def callApi():
 
@@ -54,28 +54,6 @@ def callApi():
         logging.debug('API Request Failure!')
         return "Failure"
 
-def check_team(teamId):
-    conn = None
-    try:
-        params = dbconfig()
-        conn = psycopg2.connect(**params)
-        cur = conn.cursor()
-
-        sql = """ SELECT id, teamId FROM teams
-                WHERE teamId = %s ORDER BY id"""
-
-        logging.info('Check Team availability in DB - Team ID: '+teamId)
-        cur.execute(sql, ([teamId]))
-        logging.info('Record Count: ' + str(cur.rowcount))
- 
-        cur.close()
-        return cur.rowcount
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-    finally:
-        if conn is not None:
-            conn.close()
-
 def insert_team(teamId, name, description, projectName,projectId):
     conn = None
     try:
@@ -111,7 +89,7 @@ if json_object['value'] == []:
 else:
     logging.info('Looping through received DATA.')
     for rows in json_object['value']:
-        if check_team(rows['id']) == 0:
+        if db.check_record_available(rows['id'], 'teams','teamid','id','id',1) == 0:
             print('Inserting Team'+ rows['name'])
             insert_team(rows['id'], rows['name'], rows['description'], rows['projectName'], rows['projectId'])
         else:
