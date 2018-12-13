@@ -66,6 +66,8 @@ install: ## Install the application
 	npm install
 # Install react router package
 	npm install --save react-router-dom
+# Install react count down timer package
+	npm install react-countdown-now --save
 # Install Flask web application framework
 	pip install -U Flask
 # Install jq
