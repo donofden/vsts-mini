@@ -76,7 +76,7 @@ def insert_record(tableName,insertData):
         insertcolumnValue = ", ".join("'{0}'".format(values) for values in columnValue)
 
 
-        sql = """ INSERT INTO teams("""+ insertColumn +""")
+        sql = """ INSERT INTO """+ tableName +"""("""+ insertColumn +""")
              VALUES("""+ insertcolumnValue +""") RETURNING id;"""
         logging.info('Inserting: '+sql)
         cur.execute(sql)

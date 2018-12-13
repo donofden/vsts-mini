@@ -55,7 +55,7 @@ def callApi(projectId, teamId):
         logging.debug('API Request Failure!')
         return "Failure"
 
-logging.info('Fetching Teams from ADO!')
+logging.info('Fetching Iterations for the Teams from ADO!')
 
 
 teams = db.select_all_records('teams', 'project_id,team_id')
@@ -63,6 +63,25 @@ decoded_hand = json.loads(teams)
 teamsTuple = tuple(decoded_hand) 
 
 for team in teamsTuple:
-    print(team['team_id'], team['project_id'])
     json_object = callApi(team['project_id'], team['team_id'])
-    print(json_object)
+    if json_object['value'] == []:
+        logging.info('No Data!')
+    else:
+        logging.info('Looping through received DATA.')
+        for rows in json_object['value']:
+            if db.check_record_available(rows['id'], 'iterations','iteration_id','id','id',1) == 0:
+                print('Inserting Iterations: '+ rows['name'])
+                insert = {
+                'team_id': team['team_id'],
+                'iteration_id': rows['id'],
+                'name': rows['name'],
+                'path':rows['path'],
+                'start_date': rows['attributes']['startDate'],
+                'finish_date': rows['attributes']['finishDate'],
+                'time_frame': rows['attributes']['timeFrame']
+                }
+                db.insert_record('iterations', insert)
+            else:
+                print('Iterations availabe in DB: '+ rows['name'])
+                logging.info('Iterations availabe in DB: '+ rows['id'] +' Name: '+ rows['name'])
+
