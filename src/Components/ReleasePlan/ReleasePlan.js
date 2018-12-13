@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { myConfig } from '../../config.js';
-import Countdown, { getTimeDifference } from 'react-countdown-now';
+import Countdown from 'react-countdown-now';
 
 class ReleasePlan extends Component {
     constructor(){
@@ -12,12 +12,12 @@ class ReleasePlan extends Component {
             planID: myConfig.planID,
             releaseName: '',
             releasePlanColor: '',
-            releaseCountDown: 0
+            releaseCountDown: 0,
+            isDataAvailable: false,
+            loading : true
           };
     }
     componentDidMount() {
-        this.setState({ time: '' });
-        this.setState({apiData: ''});
         let header = new Headers();
         header.append("Authorization", "Basic " + myConfig.vstsToken);
         var currentDate = Date.parse(new Date());
@@ -27,7 +27,7 @@ class ReleasePlan extends Component {
           headers: header
         }).then(response => response.json())
           .then((planData) => {
-            let releaseTime = []; let planName = []; let planColor = [];
+           let releaseTime = []; let planName = []; let planColor = [];
            if(planData.properties.markers.length > 0) {
                 planData.properties.markers.filter(function(plan) {
                     var sliceReleaseDate = plan.date.slice(0, -1);
@@ -39,14 +39,19 @@ class ReleasePlan extends Component {
                         planName.push(plan.label)
                         planColor.push(plan.color)
                     }
+                    return true;
                 });
                 this.setState({releaseCountDown: releaseTime[0], releaseName: planName[0], releasePlanColor: planColor[0]});
+                this.setState({ isDataAvailable: true, loading: false})
+           }
+           if(!this.state.releaseCountDown) {
+            this.setState({ isDataAvailable: false, loading: false})
            }
         })
     }
 
    render() {
-        if(this.state.releaseCountDown && this.state.releaseName) {
+        if(this.state.releaseCountDown && this.state.releaseName && this.state.isDataAvailable && !this.state.loading) {
             const renderer = ({ days, hours, minutes, seconds }) => {
                 return <div className="row">
                     <div className="col-md-3 col-sm-6"></div>
@@ -104,18 +109,22 @@ class ReleasePlan extends Component {
                         </div>
                     </div>
                 )
-        } else {
+        } else if(!this.state.isDataAvailable && !this.state.loading) {
             return (
                 <div>
                     <div className="container text-center">
                         <h3 className="text-muted text-center">There is no release plans at the moment</h3>
-                        <h3 className="text-success text-muted text-center">Go and create your release plan in VSTS</h3>
+                        <h3 className="text-success text-muted text-center">Please go and create your release plan in VSTS</h3>
                         <br></br>
                     </div>
                     <div className="awards">
                         <div className="text-center"><img alt="Release Plan" src="../assets/img/release_plan.gif"></img></div>
                     </div>
                 </div>
+            )
+        } else {
+            return (
+                <div className="text-center"><img alt="Build Definitions" src="../assets/img/build-load-icon.gif"></img></div>
             )
         }
     }
