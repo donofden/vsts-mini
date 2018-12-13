@@ -65,10 +65,15 @@ else:
     for rows in json_object['value']:
         if db.check_record_available(rows['id'], 'teams','team_id','id','id',1) == 0:
             print('Inserting Team: '+ rows['name'])
+            
+            # To remove single quotes from the description
+            description = rows.get('description','')
+            description = description.replace("'","")
+
             insert = {
             'team_id': rows['id'],
             'name': rows['name'],
-            'description':rows['description'],
+            'description': description,
             'project_name': rows['projectName'],
             'project_id': rows['projectId']
             }

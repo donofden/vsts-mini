@@ -114,6 +114,7 @@ setup-pg: install-pg wait60 ## To install postgres
 	@echo
 	psql vsts_mini < python/seed_data/teams.sql
 	psql vsts_mini < python/seed_data/iterations.sql
+	psql vsts_mini < python/seed_data/boards.sql
 	echo "DONE!"
 	psql -U postgres
 
@@ -127,6 +128,7 @@ kill-flask:## To Kill Flask
 	@echo "Find Python Flask run command"
 	@echo "kill  PROCESSID"
 
-fetch-data: ## To start the application
+fetch-data: ## Fetch Details from ADO
 	cd python && python3 fetchTeams.py
 	cd python && python3 fetchIterations.py
+	cd python && python3 fetchBoards.py
