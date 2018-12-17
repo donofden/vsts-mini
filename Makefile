@@ -115,6 +115,7 @@ setup-pg: install-pg wait60 ## To install postgres
 	psql vsts_mini < python/seed_data/teams.sql
 	psql vsts_mini < python/seed_data/iterations.sql
 	psql vsts_mini < python/seed_data/boards.sql
+	psql vsts_mini < python/seed_data/workitems.sql
 	echo "DONE!"
 	psql -U postgres
 
@@ -132,3 +133,6 @@ fetch-data: ## Fetch Details from ADO
 	cd python && python3 fetchTeams.py
 	cd python && python3 fetchIterations.py
 	cd python && python3 fetchBoards.py
+
+update-data-once-per-day: ## Fetch Details from ADO daily for Burn Down report
+	cd python && python3 fetchWorkItems.py
