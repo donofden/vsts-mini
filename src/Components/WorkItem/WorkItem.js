@@ -24,7 +24,7 @@ class WorkItem extends Component {
         }).then(response => response.json())
           .then(workItemDetails => {
             if(typeof workItemDetails.fields !== "undefined") {
-                this.setState({ isDataAvailable: true, loading: false, workItemDetails: workItemDetails.fields, assignedTo: this.state.workItemDetails['System.AssignedTo'].displayName})
+                this.setState({ isDataAvailable: true, loading: false, workItemDetails: workItemDetails.fields, assignedTo: workItemDetails.fields['System.AssignedTo'].displayName})
                 this.fetchWorkItemComments();
             } else {
                 this.setState({ isDataAvailable: false, loading: false})
