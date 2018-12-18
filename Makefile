@@ -62,10 +62,14 @@ clean: ## Clean the local filesystem
 
 .PHONY: install
 install: ## Install the application
-# Install npm
+	# Install npm
 	npm install
-# Install Flask web application framework
-	pip install -U Flask
+	# Install Flask web application framework
+	pip3 install -U Flask
+	pip3 install psycopg2
+	pip3 install requests
+	pip3 install jsonify
+	pip3 install flask_sqlalchemy
 # Install jq
 ifeq ($(OS),Darwin)
 	# Run MacOS commands
