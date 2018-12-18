@@ -11,6 +11,7 @@ from decimal import *
 from config import config
 from config import dbconfig
 from re import escape
+from datetime import datetime
 
 # Log the activities
 logname ='log/log-' + time.strftime("%Y-%m-%d") +'.log'
@@ -65,7 +66,9 @@ teamsTuple = tuple(decoded_hand)
 for team in teamsTuple:
 
     # Get iterations of the Teams
-    condition = "team_id='"+ team['team_id'] +"'"
+    today = datetime.date(datetime.now())
+    # Fetch the current iteration of the team
+    condition = "team_id='"+ team['team_id'] +"' AND '"+ str(today) +"' between start_date and finish_date"
     iterations = db.select_records('iterations', 'iteration_id,name', condition)
     decoded_hand = json.loads(iterations)
     iterationsTuple = tuple(decoded_hand)
@@ -172,7 +175,3 @@ for team in teamsTuple:
         else:
             print('Team Id:'+team['team_id']+' Dont have workitems for the Iteration: '+iteration['name'])
     #sys.exit(0)
-
-
-
-
