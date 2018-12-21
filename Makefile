@@ -53,7 +53,7 @@ info: ## Show if node, npm, yarn, js is installed
 	@echo yarn version: `$(YARN) --version` "($(YARN))"
 	@echo jq version: `$(JQ) --version` "($(JQ))"
 
-start: ## to start the application 
+start: ## To start the application 
 	@npm start
 
 .PHONY: clean
@@ -140,3 +140,7 @@ fetch-data: ## Fetch Details from ADO
 
 update-data-once-per-day: ## Fetch Details from ADO daily for Burn Down report
 	cd python && python3 fetchWorkItems.py
+
+send-burndown-email: ## Will Send Burndown email to Team 
+	cd python/emails && python3 dailyBurnDown.py 
+	
