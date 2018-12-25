@@ -1,6 +1,5 @@
 
 
-PAT:ecd3ftqt2r3k46njmeadmxevdzs5b2j2g4s75bcoejuwyextzr4q
 
 
 pip install alembic aniso8601 bcrypt cffi click coverage enum-compat eventlet flask Flask-Bcrypt Flask-Cors Flask-Migrate flask-restplus Flask-Script Flask-SocketIO Flask-SQLAlchemy Flask-Testing gem greenl
