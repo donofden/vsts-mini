@@ -1,0 +1,22 @@
+
+
+PAT:ecd3ftqt2r3k46njmeadmxevdzs5b2j2g4s75bcoejuwyextzr4q
+
+
+pip install alembic aniso8601 bcrypt cffi click coverage enum-compat eventlet flask Flask-Bcrypt Flask-Cors Flask-Migrate flask-restplus Flask-Script Flask-SocketIO Flask-SQLAlchemy Flask-Testing gem greenl
+et gunicorn itsdangerous Jinja2 jsonschema Mako MarkupSafe psycopg2 pycparser PyJWT python-dateutil python-editor python-engineio python-socketio pytz selenium six SQLAlchemy Werkzeug
+
+
+pip install flask flask-bcrypt flask-restplus Flask-Migrate pyjwt Flask-Script flask_testing
+
+pip install coverage eventlet Flask-Cors Flask-SocketIO psycopg2 selenium
+
+
+export VSTS_ENV=dev
+export VSTS_SECRET_KEY= openssl rand -hex 24
+
+python manage.py db init
+python manage.py db migrate --message 'other migrations'
+python manage.py db upgrade
+
+
