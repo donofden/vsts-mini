@@ -3,6 +3,12 @@ NPM=$(shell which npm)
 YARN=$(shell which yarn)
 JQ=$(shell which jq)
 OS := $(shell uname)
+DATE=$(shell date +%d)
+MONTH=$(shell date +%m)
+YEAR=$(shell date +%Y)
+DIRECTORY_YEAR=db-backup/$(YEAR)
+DIRECTORY_YEAR_MONTH=db-backup/$(YEAR)/$(MONTH)
+DIRECTORY_YEAR_MONTH_DAY=db-backup/$(YEAR)/$(MONTH)/$(DATE)
 
 BABEL=./node_modules/.bin/babel
 REMOTE="git@github.com:reactjs/react-modal"
@@ -143,4 +149,13 @@ update-data-once-per-day: ## Fetch Details from ADO daily for Burn Down report
 
 send-burndown-email: ## Will Send Burndown email to Team 
 	cd python/emails && python3 dailyBurnDown.py 
+
+backup-db:  ## Will take a backup of the DB and store in appropriate folder db-backup/YEAR/MONTH/DATE
+	if [ ! -d "$(DIRECTORY_YEAR)" ]; then mkdir $(DIRECTORY_YEAR); fi
+	if [ ! -d "$(DIRECTORY_YEAR_MONTH)" ]; then mkdir $(DIRECTORY_YEAR_MONTH); fi
+	if [ ! -d "$(DIRECTORY_YEAR_MONTH_DAY)" ]; then mkdir $(DIRECTORY_YEAR_MONTH_DAY); fi
+	pg_dump -U postgres -d vsts_mini > $(DIRECTORY_YEAR_MONTH_DAY)/vsts_mini.pgsql
+
+backup-restore:  ## Will post the steps for restore
+	@echo "psql -U postgres -d vsts_mini < db-backup/YEAR/MONTH/DATE/vsts_mini.pgsql"
 	
