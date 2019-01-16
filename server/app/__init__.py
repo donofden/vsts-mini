@@ -1,16 +1,20 @@
-from flask_restplus import Api
-from flask import Blueprint
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from app.v1.config import config_by_name
+from app.app import db, flask_bcrypt
+from app.v1 import v1_blueprint
 
-from .main.controller.user_controller import api as user_ns
-from .main.controller.auth_controller import api as auth_ns
 
-blueprint = Blueprint('api', __name__)
+def create_app(config_name):
+    app = Flask(__name__)
+    app.config.from_object(config_by_name[config_name])
+    db.init_app(app)
+    flask_bcrypt.init_app(app)
+    register_blueprints(app)
 
-api = Api(blueprint,
-          title='VSTS MINI API REST END POINTS',
-          version='1.0',
-          description='vsts mini api endpoint'
-          )
+    return app
 
-api.add_namespace(user_ns, path='/user')
-api.add_namespace(auth_ns)
+
+def register_blueprints(app):
+    app.register_blueprint(v1_blueprint, url_prefix='/api/v1')

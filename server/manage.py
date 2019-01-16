@@ -1,31 +1,45 @@
 import os
 import unittest
-
-from flask_migrate import Migrate, MigrateCommand
+from app import create_app, db
+from app.v1.model import user, blacklist
+from flask_jwt_extended import JWTManager
 from flask_script import Manager
-
-from app import blueprint
-from app.main import create_app, db
-from app.main.model import user, blacklist
-
-
-app = create_app(os.getenv('VSTS_ENV') or 'dev')
+from flask_migrate import Migrate, MigrateCommand
+from app.v1 import v1_api
+from app.v1.service.blacklist_service import is_token_revoked
 
 
-app.register_blueprint(blueprint, url_prefix='/api/v1')
+vsts_app = create_app(os.getenv('VSTS_ENV') or 'dev')
+jwt = JWTManager(vsts_app)
+vsts_app.app_context().push()
+manager = Manager(vsts_app)
 
-app.app_context().push()
-manager = Manager(app)
+# This is where the duck typing magic comes in
+jwt._set_error_handler_callbacks(v1_api)
 
-migrate = Migrate(app, db)
+migrate = Migrate(vsts_app, db)
 
 manager.add_command('db', MigrateCommand)
 
 
+# @jwt.expired_token_loader
+# def handle_expired_error():
+#     return {'message': 'Token has expired'}, 401
+
+@jwt.revoked_token_loader
+def handle_revoked_token():
+    return {'message': 'Token has revoked. Please login again'}, 401
+
+
+@jwt.token_in_blacklist_loader
+def check_if_token_revoked(decoded_token):
+    return is_token_revoked(decoded_token)
+
+
 @manager.command
 def run():
-    app.run(host=app.config.get('HOST'),
-            port=app.config.get('PORT'))
+    vsts_app.run(host=vsts_app.config.get('HOST'),
+                 port=vsts_app.config.get('PORT'))
 
 
 @manager.command
