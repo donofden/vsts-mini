@@ -1,3 +1,5 @@
+[![HitCount](http://hits.dwyl.io/donofden/vsts-mini.svg)](http://hits.dwyl.io/donofden/vsts-mini)
+
 ## VSTS  MINI 
 
 A minified version of the Azure DevOps, wherein we can read the workitems/ delivery plans/ Team chart/ Trello view (in design phase)
