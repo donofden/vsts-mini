@@ -7,7 +7,7 @@ cffi==1.11.5
 Click==7.0
 coverage==4.5.2
 dnspython==1.16.0
-eventlet==0.24.1
+eventlet==0.31.0
 Flask==1.0.2
 Flask-Bcrypt==0.7.1
 Flask-CLI==0.4.0
